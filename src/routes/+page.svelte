@@ -1,2 +1,13 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+  import { Inventory } from "$lib/inventory.svelte";
+
+  function onclick() {
+    Inventory.instance.score += 1;
+  }
+</script>
+
+<h1>Health Insurance Claim Denier</h1>
+
+<button {onclick}>
+  deny {Inventory.instance.score}
+</button>

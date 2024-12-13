@@ -1,13 +1,20 @@
 <script lang="ts">
-  import { Inventory } from "$lib/inventory.svelte";
-
-  function onclick() {
-    Inventory.instance.score += 1;
-  }
+  import "../app.css";
+  import GameView from "../game-view.svelte";
+  import Items from "../items.svelte";
+  import Upgrades from "../upgrades.svelte";
 </script>
 
-<h1>Health Insurance Claim Denier</h1>
+<div class="row">
+  <GameView></GameView>
+  <Items></Items>
+  <Upgrades></Upgrades>
+</div>
 
-<button {onclick}>
-  deny {Inventory.instance.score}
-</button>
+<style>
+  .row {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+</style>

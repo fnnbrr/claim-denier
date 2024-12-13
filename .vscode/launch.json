@@ -1,0 +1,62 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"command": "npm run dev -- --host",
+			"name": "dev server",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"command": "npm run build",
+			"name": "build",
+			"request": "launch",
+			"type": "node-terminal",
+			"presentation": {
+				"hidden": false,
+				"group": "",
+				"order": 2
+			}
+		},
+		{
+			"command": "npm run preview -- --host",
+			"name": "preview server",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"type": "chrome",
+			"name": "dev client",
+			"request": "launch",
+			"url": "http://localhost:5173/"
+		},
+		{
+			"type": "chrome",
+			"name": "preview client",
+			"request": "launch",
+			"url": "http://localhost:4173/"
+		}
+	],
+	"compounds": [
+		{
+			"name": "dev",
+			"configurations": ["dev server", "dev client"],
+			"stopAll": true,
+			"presentation": {
+				"hidden": false,
+				"group": "",
+				"order": 1
+			}
+		},
+		{
+			"name": "preview",
+			"configurations": ["preview server", "preview client"],
+			"stopAll": true,
+			"presentation": {
+				"hidden": false,
+				"group": "",
+				"order": 3
+			}
+		}
+	]
+}

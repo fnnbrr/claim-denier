@@ -1,17 +1,24 @@
-import { Item } from "$lib/items/item";
+import type { Item } from "$lib/items/item";
 import { Inventory } from "$lib/inventory.svelte";
 
-export class Intern extends Item
+let intervalID: number;
+
+export const Intern: Item =
 {
-    readonly name: string = "Intern";
+    name: "Intern",
 
-    constructor()
+    onChangeQuantity(quantity: number)
     {
-        super();
-
-        setInterval(() =>
+        if (quantity < 1)
         {
-            Inventory.instance.onClick();
-        }, 1000);
+            clearInterval(intervalID);
+        }
+        else
+        {
+            intervalID = window.setInterval(() =>
+            {
+                Inventory.instance.onClick();
+            }, 1000);
+        }
     }
 };

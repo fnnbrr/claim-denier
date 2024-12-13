@@ -1,4 +1,5 @@
-export abstract class Item
+export interface Item
 {
-    abstract readonly name: string;
+    name: string;
+    onChangeQuantity(quantity: number): void;
 }

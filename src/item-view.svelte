@@ -3,9 +3,10 @@
 
   interface Props {
     item: Item;
+    quantity: number;
   }
 
-  let { item }: Props = $props();
+  let { item, quantity }: Props = $props();
 </script>
 
-<p>{item.name}</p>
+<p>{item.name} x{quantity}</p>

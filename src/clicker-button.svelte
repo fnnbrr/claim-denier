@@ -2,7 +2,7 @@
   import { Inventory } from "$lib/inventory.svelte";
 
   function onclick() {
-    Inventory.instance.score += 1;
+    Inventory.instance.onClick();
   }
 </script>
 

@@ -49,6 +49,11 @@ export class Inventory
     }
 
     score: number = $state(0);
+
+    onClick()
+    {
+        this.score += 1;
+    }
 }
 
 interface InventorySaveData

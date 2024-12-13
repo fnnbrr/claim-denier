@@ -3,7 +3,7 @@
   import Counter from "./counter.svelte";
 </script>
 
-<div class="column">
+<div class="game-view">
   <h1>Health Insurance Claim Denier</h1>
 
   <Counter></Counter>
@@ -11,9 +11,11 @@
 </div>
 
 <style>
-  .column {
+  .game-view {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    align-items: center;
+    justify-content: start;
   }
 </style>

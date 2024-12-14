@@ -6,7 +6,7 @@
 
   let title: string = $derived.by(() => {
     if (Inventory.instance.score > 0) {
-      return `${Inventory.instance.score} Claims Denied`;
+      return `${Inventory.instance.scoreStringShort} Claims Denied`;
     } else {
       return "Claim Denier";
     }

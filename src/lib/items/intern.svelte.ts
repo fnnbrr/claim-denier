@@ -1,7 +1,5 @@
 import { Item } from "$lib/items/item.svelte";
-import { Inventory } from "$lib/inventory.svelte";
-
-let intervalID: number;
+import { ScoreAccumulator } from "$lib/score-accumulator.svelte";
 
 export class Intern extends Item
 {
@@ -11,17 +9,7 @@ export class Intern extends Item
     {
         super.incrementQuantity(increment);
 
-        if (this.quantity < 1)
-        {
-            clearInterval(intervalID);
-        }
-        else
-        {
-            intervalID = window.setInterval(() =>
-            {
-                Inventory.instance.onClick();
-            }, 1000);
-        }
+        ScoreAccumulator.instance.modifyScorePerSecond(1 * increment);
     }
 
     getCost(): number

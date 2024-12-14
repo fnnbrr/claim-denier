@@ -2,4 +2,4 @@
   import { Inventory } from "$lib/inventory.svelte";
 </script>
 
-<h3>{Inventory.instance.score} denials</h3>
+<h3>{Inventory.instance.scoreStringLong} denials</h3>

@@ -1,4 +1,4 @@
-import { scoreFormatterLong, scoreFormatterShort } from "./score-formatters";
+import { formatScore, FormatStyle } from "./format-score";
 
 const saveKey: string = "claim-denier-inventory-save";
 
@@ -51,8 +51,8 @@ export class Inventory
     }
 
     score: number = $state(0);
-    scoreStringLong: string = $derived(scoreFormatterLong.format(this.score));
-    scoreStringShort: string = $derived(scoreFormatterShort.format(this.score));
+    scoreStringLong: string = $derived(formatScore(this.score, FormatStyle.long));
+    scoreStringShort: string = $derived(formatScore(this.score, FormatStyle.short));
 
     onClick()
     {

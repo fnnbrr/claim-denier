@@ -2,6 +2,12 @@ import { formatScore, FormatStyle } from "./format-score";
 
 const saveKey: string = "claim-denier-inventory-save";
 
+declare global
+{
+    // eslint-disable-next-line no-var
+    var inventory: Inventory;
+}
+
 export class Inventory
 {
     static get instance()
@@ -15,6 +21,7 @@ export class Inventory
     {
         console.log("Initializing Inventory");
         this.#instance = new Inventory();
+        globalThis.inventory = this.instance;  // To access from the console
 
         if (typeof localStorage !== "undefined")
         {
@@ -57,6 +64,18 @@ export class Inventory
     onClick()
     {
         this.score += 1;
+    }
+
+    clearSave()
+    {
+        const save: InventorySaveData =
+        {
+            score: 0
+        };
+
+        localStorage.setItem(saveKey, JSON.stringify(save));
+
+        Inventory.load();
     }
 }
 

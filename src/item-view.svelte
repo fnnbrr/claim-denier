@@ -4,19 +4,20 @@
 
   interface Props {
     item: Item;
+    buySellQuantity: number;
   }
 
-  let { item }: Props = $props();
+  let { item, buySellQuantity }: Props = $props();
 
   function onclick() {
-    Inventory.instance.score -= item.getCost();
-    item.incrementQuantity(1);
+    Inventory.instance.score -= buySellQuantity * item.getCost();
+    item.incrementQuantity(buySellQuantity);
   }
 </script>
 
 <button {onclick} class="item-view">
   <p>{item.name} x{item.quantity}</p>
-  <p>{item.getCost()} denials</p>
+  <p>{buySellQuantity * item.getCost()} denials</p>
 </button>
 
 <style>

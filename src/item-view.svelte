@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { formatScore, FormatStyle } from "$lib/format-score";
   import { Inventory } from "$lib/inventory.svelte";
   import type { Item } from "$lib/items/item.svelte";
 
@@ -10,14 +11,29 @@
   let { item, buySellQuantity }: Props = $props();
 
   function onclick() {
-    Inventory.instance.score -= buySellQuantity * item.getCost();
     item.incrementQuantity(buySellQuantity);
+  }
+
+  let scoreText: string = $derived.by(() => {
+    if (buySellQuantity > 0) {
+      return formatScore(buySellQuantity * item.getCost(), FormatStyle.short);
+    } else {
+      return `+${formatScore(Math.abs(buySellQuantity) * item.getRefundAmount(), FormatStyle.short)}`;
+    }
+  });
+
+  function isDisabled(): boolean {
+    if (buySellQuantity > 0) {
+      return item.getCost() * buySellQuantity > Inventory.instance.score;
+    } else {
+      return Math.abs(buySellQuantity) > item.quantity;
+    }
   }
 </script>
 
-<button {onclick} class="item-view">
+<button {onclick} disabled={isDisabled()} class="item-view">
   <p>{item.name} x{item.quantity}</p>
-  <p>{buySellQuantity * item.getCost()} denials</p>
+  <p>{scoreText} denials</p>
 </button>
 
 <style>

@@ -9,11 +9,16 @@ export class AutoClicker extends Item
     {
         super.incrementQuantity(increment);
 
-        ScoreAccumulator.instance.modifyScorePerSecond(10 * increment);
+        ScoreAccumulator.instance.modifyScorePerSecond(1 * increment);
     }
 
     getCost(): number
     {
-        return 100;
+        return 100 * (Math.pow(1.15, this.quantity));
+    }
+
+    getRefundAmount(): number
+    {
+        return 0.5 * this.getCost();
     }
 };

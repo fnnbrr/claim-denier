@@ -1,12 +1,12 @@
-import type { Item } from "./items/item";
-import { Intern } from "./items/intern";
+import type { Item } from "./items/item.svelte";
+import { Intern } from "./items/intern.svelte";
 
-export const allItems: Map<Item, number> = new Map<Item, number>(
+export const allItems: Item[] =
     [
-        [Intern, 0]
-    ]);
+        new Intern()
+    ];
 
-for (const [item, quantity] of allItems)
+for (const item of allItems)
 {
-    item.onChangeQuantity(quantity);
+    item.incrementQuantity(0);
 }

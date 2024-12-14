@@ -1,12 +1,20 @@
 <script lang="ts">
-  import type { Item } from "$lib/items/item";
+  import { Inventory } from "$lib/inventory.svelte";
+  import type { Item } from "$lib/items/item.svelte";
 
   interface Props {
     item: Item;
-    quantity: number;
   }
 
-  let { item, quantity }: Props = $props();
+  let { item }: Props = $props();
+
+  function onclick() {
+    Inventory.instance.score -= item.getCost();
+    item.incrementQuantity(1);
+  }
 </script>
 
-<p>{item.name} x{quantity}</p>
+<button {onclick}>
+  <p>{item.name} x{item.quantity}</p>
+  <p>{item.getCost()} denials</p>
+</button>

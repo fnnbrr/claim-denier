@@ -5,8 +5,8 @@
 
 <div class="items">
   <h3>Items</h3>
-  {#each [...allItems] as [item, quantity] (item.name)}
-    <ItemView {item} {quantity}></ItemView>
+  {#each allItems as item (item.name)}
+    <ItemView {item}></ItemView>
   {/each}
 </div>
 

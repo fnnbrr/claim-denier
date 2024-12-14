@@ -14,7 +14,13 @@
   }
 </script>
 
-<button {onclick}>
+<button {onclick} class="item-view">
   <p>{item.name} x{item.quantity}</p>
   <p>{item.getCost()} denials</p>
 </button>
+
+<style>
+  .item-view {
+    width: 100%;
+  }
+</style>

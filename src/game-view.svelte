@@ -14,7 +14,7 @@
   .game-view {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex: 1;
     align-items: center;
     justify-content: start;
   }

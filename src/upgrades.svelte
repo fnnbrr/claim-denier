@@ -4,10 +4,11 @@
 
 <style>
   .upgrades {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
+    overflow-y: auto;
   }
 </style>

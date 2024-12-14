@@ -1,14 +1,12 @@
 <script lang="ts">
   import "../app.css";
   import GameView from "../game-view.svelte";
-  import Items from "../items.svelte";
-  import Upgrades from "../upgrades.svelte";
+  import Store from "../store.svelte";
 </script>
 
 <div class="row">
   <GameView></GameView>
-  <Items></Items>
-  <Upgrades></Upgrades>
+  <Store></Store>
 </div>
 
 <style>

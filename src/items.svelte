@@ -5,17 +5,23 @@
 
 <div class="items">
   <h3>Items</h3>
-  {#each allItems as item (item.name)}
-    <ItemView {item}></ItemView>
-  {/each}
+  <div class="item-list">
+    {#each allItems as item (item.name)}
+      <ItemView {item}></ItemView>
+    {/each}
+  </div>
 </div>
 
 <style>
   .items {
-    flex-grow: 1;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: start;
+  }
+
+  .item-list {
+    overflow-y: auto;
   }
 </style>

@@ -39,7 +39,7 @@
 
 <button {onclick} disabled={isDisabled()} hidden={isHidden()} class="item-view">
   <p>{item.name} x{item.quantity}</p>
-  <p>{scoreText} denials</p>
+  <p><img src={item.iconPath} alt="item icon" />{scoreText}</p>
 </button>
 
 <style>

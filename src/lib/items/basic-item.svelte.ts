@@ -9,18 +9,16 @@ export class BasicItem extends Item
     readonly name: string;
     readonly scorePerSecond: number;
     readonly baseCost: number;
-    readonly costIncrease: number;
-    readonly refundMultiplier: number;
+    readonly iconPath: string;
 
-    constructor(name: string, scorePerSecond: number, baseCost: number, costIncrease: number = 1.15, refundMultiplier: number = 0.5)
+    constructor(name: string, scorePerSecond: number, baseCost: number, iconPath: string)
     {
         super();
 
         this.name = name;
         this.scorePerSecond = scorePerSecond;
         this.baseCost = baseCost;
-        this.costIncrease = costIncrease;
-        this.refundMultiplier = refundMultiplier;
+        this.iconPath = iconPath;
     }
 
     incrementQuantity(increment: number, modifyScore: boolean): void
@@ -32,11 +30,11 @@ export class BasicItem extends Item
 
     getCost(): number
     {
-        return this.baseCost * (Math.pow(this.costIncrease, this.quantity));
+        return this.baseCost * (Math.pow(1.15, this.quantity));
     }
 
     getRefundAmount(): number
     {
-        return this.refundMultiplier * this.getCost();
+        return 0.5 * this.getCost();
     }
 };

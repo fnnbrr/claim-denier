@@ -2,7 +2,7 @@ import { Inventory } from "$lib/inventory.svelte";
 
 export abstract class Item
 {
-    abstract name: string;
+    abstract readonly name: string;
 
     get quantity(): number
     {
@@ -12,6 +12,7 @@ export abstract class Item
     #quantity: number = $state(0);
 
     abstract readonly baseCost: number;
+    abstract readonly iconPath: string;
 
     incrementQuantity(increment: number, modifyScore: boolean): void
     {

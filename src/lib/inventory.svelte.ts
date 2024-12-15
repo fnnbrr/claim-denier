@@ -32,6 +32,7 @@ export class Inventory
     loadFromSaveData(save: InventorySaveData)
     {
         this.score = save.score;
+        this.prevMaxScore = save.maxScore;
 
         // Zero out the quantity on all items before restoring them from save
         for (const item of allItems.values())
@@ -79,6 +80,7 @@ export class Inventory
         const save: InventorySaveData =
         {
             score: this.score,
+            maxScore: this.maxScore,
             items: Array.from(allItems, ([key, item]): ItemSaveData =>
                 ({ key: key, quantity: item.quantity })),
             upgrades: Array.from(allUpgrades, ([key, upgrade]): UpgradeSaveData =>
@@ -92,6 +94,14 @@ export class Inventory
     scoreStringLong: string = $derived(formatScore(this.score, FormatStyle.long));
     scoreStringShort: string = $derived(formatScore(this.score, FormatStyle.short));
 
+    maxScore: number = $derived.by(() =>
+    {
+        const value = Math.max(this.prevMaxScore, this.score);
+        this.prevMaxScore = value;
+        return value;
+    });
+    private prevMaxScore: number = 0;
+
     onClick()
     {
         this.score += StatManager.instance.getStat(Stats.ScorePerClick).modify(1);
@@ -101,6 +111,7 @@ export class Inventory
 export interface InventorySaveData
 {
     score: number;
+    maxScore: number;
     items: ItemSaveData[];
     upgrades: UpgradeSaveData[];
 }

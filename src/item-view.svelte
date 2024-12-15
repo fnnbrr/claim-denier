@@ -29,9 +29,15 @@
       return Math.abs(buySellQuantity) > item.quantity;
     }
   }
+
+  function isHidden(): boolean {
+    if (item.baseCost < 20) return false;
+
+    return Inventory.instance.maxScore < 0.3 * item.baseCost;
+  }
 </script>
 
-<button {onclick} disabled={isDisabled()} class="item-view">
+<button {onclick} disabled={isDisabled()} hidden={isHidden()} class="item-view">
   <p>{item.name} x{item.quantity}</p>
   <p>{scoreText} denials</p>
 </button>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { formatScore, FormatStyle } from "$lib/format-score";
   import { Inventory } from "$lib/inventory.svelte";
   import type { Upgrade } from "./upgrades/upgrade.svelte";
 
@@ -15,12 +16,23 @@
   function isDisabled(): boolean {
     return upgrade.isOwned || upgrade.cost > Inventory.instance.score;
   }
+
+  function isHidden(): boolean {
+    if (upgrade.cost < 20) return false;
+
+    return Inventory.instance.maxScore < 0.3 * upgrade.cost;
+  }
 </script>
 
-<button {onclick} disabled={isDisabled()} class="upgrade-view">
+<button
+  {onclick}
+  disabled={isDisabled()}
+  hidden={isHidden()}
+  class="upgrade-view"
+>
   <p>{upgrade.name}</p>
   {#if !upgrade.isOwned}
-    <p>{upgrade.cost} denials</p>
+    <p>{formatScore(upgrade.cost, FormatStyle.short)} denials</p>
   {/if}
 </button>
 

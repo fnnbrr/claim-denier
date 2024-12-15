@@ -11,6 +11,8 @@ export abstract class Item
 
     #quantity: number = $state(0);
 
+    abstract readonly baseCost: number;
+
     incrementQuantity(increment: number, modifyScore: boolean): void
     {
         if (modifyScore)

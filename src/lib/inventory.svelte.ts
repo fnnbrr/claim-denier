@@ -1,4 +1,4 @@
-import { allItems, ItemKey } from "./all-items";
+import { allItems, ItemKey } from "./items/all-items";
 import { formatScore, FormatStyle } from "./format-score";
 
 const saveKey: string = "claim-denier-inventory-save";

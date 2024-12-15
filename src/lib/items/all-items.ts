@@ -1,5 +1,5 @@
-import type { Item } from "./items/item.svelte";
-import { BasicItem } from "./items/basic-item.svelte";
+import type { Item } from "./item.svelte";
+import { BasicItem } from "./basic-item.svelte";
 
 // Note: these enum values are used to serialize/deserialize owned item quantities.
 // Changing the values (e.g. swapping 0 and 1) will impact any previous save files.

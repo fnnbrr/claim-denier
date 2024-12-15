@@ -1,24 +1,14 @@
 <script>
   import UpgradeView from "./upgrade-view.svelte";
+  import { allUpgrades } from "./upgrades/all-upgrades";
 </script>
 
 <div class="upgrades">
   <h3>Upgrades</h3>
   <div class="upgrade-list">
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
-    <UpgradeView></UpgradeView>
+    {#each allUpgrades as [key, upgrade] (key)}
+      <UpgradeView {upgrade}></UpgradeView>
+    {/each}
   </div>
 </div>
 

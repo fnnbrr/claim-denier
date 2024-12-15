@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { allItems } from "$lib/all-items";
+  import { allItems } from "$lib/items/all-items";
   import ItemView from "./item-view.svelte";
 
   let buySellQuantity: number = 1;

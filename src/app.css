@@ -1,3 +1,8 @@
+@font-face {
+    font-family: dogica-pixel-bold;
+    src: url("$lib/assets/dogicapixelbold.ttf") format('truetype');
+  }
+
 html {
     height: 100%;
     width: 100%;
@@ -8,4 +13,8 @@ body {
     height: 100%;
     width: 100%;
 	margin: 0;
+}
+
+* {
+    font-family: dogica-pixel-bold, sans-serif;
 }

@@ -6,7 +6,7 @@ export const Stats =
         ScorePerSecond: 1,
     } as const;
 
-type StatType = typeof Stats[keyof typeof Stats];
+export type StatType = typeof Stats[keyof typeof Stats];
 
 export class StatManager
 {

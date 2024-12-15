@@ -1,4 +1,5 @@
 import { Inventory } from "./inventory.svelte";
+import { StatManager, Stats } from "./stats/stat-manager";
 
 export class ScoreAccumulator
 {
@@ -33,7 +34,9 @@ export class ScoreAccumulator
         const deltaTime: number = timeStamp - this.#prevTimeStamp;
         this.#prevTimeStamp = timeStamp;
 
-        Inventory.instance.score += deltaTime * (this.#scorePerSecond / 1000);
+        const scorePerSecondWithStats: number = StatManager.instance.getStat(Stats.ScorePerSecond).modify(this.#scorePerSecond);
+
+        Inventory.instance.score += (deltaTime / 1000) * scorePerSecondWithStats;
 
         requestAnimationFrame((nextTimeStamp) => this.#update(nextTimeStamp));
     }

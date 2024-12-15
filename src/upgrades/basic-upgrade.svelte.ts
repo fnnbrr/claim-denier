@@ -1,4 +1,4 @@
-import { StatManager, Stats } from "$lib/stats/stat-manager";
+import { StatManager, type StatType } from "$lib/stats/stat-manager";
 import { Upgrade } from "./upgrade.svelte";
 
 /**
@@ -8,13 +8,18 @@ export class BasicUpgrade extends Upgrade
 {
     readonly name: string;
     readonly cost: number;
+    private readonly statAddBonuses: Map<StatType, number>;
+    private readonly statMultBonuses: Map<StatType, number>;
 
-    constructor(name: string, cost: number)
+    constructor(name: string, cost: number, statAddBonuses?: Map<StatType, number>, statMultBonuses?: Map<StatType, number>)
     {
         super();
 
         this.name = name;
         this.cost = cost;
+
+        this.statAddBonuses = statAddBonuses ?? new Map<StatType, number>();
+        this.statMultBonuses = statMultBonuses ?? new Map<StatType, number>();
     }
 
     setIsOwned(isOwned: boolean, modifyScore: boolean): void
@@ -28,14 +33,16 @@ export class BasicUpgrade extends Upgrade
             console.log("bought upgrade");
         }
 
-        // TODO: temp
-        if (isOwned)
+        const statSign: number = isOwned ? 1 : -1;
+
+        for (const [statType, addBonus] of this.statAddBonuses)
         {
-            StatManager.instance.getStat(Stats.ScorePerClick).addBonus += 1;
+            StatManager.instance.getStat(statType).addBonus += statSign * addBonus;
         }
-        else
+
+        for (const [statType, multBonus] of this.statMultBonuses)
         {
-            StatManager.instance.getStat(Stats.ScorePerClick).addBonus -= 1;
+            StatManager.instance.getStat(statType).multBonus += statSign * multBonus;
         }
     }
 };

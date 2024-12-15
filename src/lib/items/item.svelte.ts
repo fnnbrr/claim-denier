@@ -11,15 +11,18 @@ export abstract class Item
 
     #quantity: number = $state(0);
 
-    incrementQuantity(increment: number): void
+    incrementQuantity(increment: number, modifyScore: boolean): void
     {
-        if (increment > 0)
+        if (modifyScore)
         {
-            Inventory.instance.score -= increment * this.getCost();
-        }
-        else
-        {
-            Inventory.instance.score -= increment * this.getRefundAmount();
+            if (increment > 0)
+            {
+                Inventory.instance.score -= increment * this.getCost();
+            }
+            else
+            {
+                Inventory.instance.score -= increment * this.getRefundAmount();
+            }
         }
 
         this.#quantity += increment;

@@ -23,9 +23,9 @@ export class BasicItem extends Item
         this.refundMultiplier = refundMultiplier;
     }
 
-    incrementQuantity(increment: number)
+    incrementQuantity(increment: number, modifyScore: boolean): void
     {
-        super.incrementQuantity(increment);
+        super.incrementQuantity(increment, modifyScore);
 
         ScoreAccumulator.instance.modifyScorePerSecond(this.scorePerSecond * increment);
     }

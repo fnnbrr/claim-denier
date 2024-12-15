@@ -11,7 +11,7 @@
   let { item, buySellQuantity }: Props = $props();
 
   function onclick() {
-    item.incrementQuantity(buySellQuantity);
+    item.incrementQuantity(buySellQuantity, true);
   }
 
   let scoreText: string = $derived.by(() => {

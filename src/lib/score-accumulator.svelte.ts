@@ -13,13 +13,16 @@ export class ScoreAccumulator
     {
         console.log("Initializing Score Accumulator");
         this.#instance = new ScoreAccumulator();
-
-        this.instance.#update(performance.now());
     }
 
     constructor()
     {
         this.#prevTimeStamp = performance.now();
+
+        setTimeout(() =>
+        {
+            this.#update(performance.now());
+        }, 0);
     }
 
     #scorePerSecond: number = 0;

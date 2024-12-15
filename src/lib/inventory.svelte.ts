@@ -1,3 +1,4 @@
+import { allItems, ItemKey } from "./all-items";
 import { formatScore, FormatStyle } from "./format-score";
 
 const saveKey: string = "claim-denier-inventory-save";
@@ -17,21 +18,26 @@ export class Inventory
 
     static #instance: Inventory;
 
-    static
-    {
+    static {
         console.log("Initializing Inventory");
         this.#instance = new Inventory();
         globalThis.inventory = this.instance;  // To access from the console
+    }
 
+    constructor()
+    {
         if (typeof localStorage !== "undefined")
         {
-            this.load();
+            setTimeout(() =>
+            {
+                this.load();
 
-            addEventListener("beforeunload", () => this.save());
+                addEventListener("beforeunload", () => this.save());
+            }, 0);
         }
     }
 
-    static load()
+    load()
     {
         const saveString = localStorage.getItem(saveKey);
 
@@ -41,17 +47,39 @@ export class Inventory
 
             const save: InventorySaveData = JSON.parse(saveString);
 
-            this.instance.score = save.score;
+            this.score = save.score;
+
+            // Zero out the quantity on all items before restoring them from save
+            for (const item of allItems.values())
+            {
+                item.incrementQuantity(-item.quantity, false);
+            }
+
+            for (const itemSaveData of save.items)
+            {
+                const item = allItems.get(itemSaveData.key);
+
+                if (item !== undefined)
+                {
+                    item.incrementQuantity(itemSaveData.quantity, false);
+                }
+                else
+                {
+                    console.warn(`Item with key '${itemSaveData.key}' not found`);
+                }
+            }
         }
     }
 
-    static save()
+    save()
     {
         console.log("saving");
 
         const save: InventorySaveData =
         {
-            score: this.instance.score
+            score: this.score,
+            items: Array.from(allItems, ([key, item]): ItemSaveData =>
+                ({ key: key, quantity: item.quantity }))
         };
 
         localStorage.setItem(saveKey, JSON.stringify(save));
@@ -70,16 +98,24 @@ export class Inventory
     {
         const save: InventorySaveData =
         {
-            score: 0
+            score: 0,
+            items: []
         };
 
         localStorage.setItem(saveKey, JSON.stringify(save));
 
-        Inventory.load();
+        this.load();
     }
 }
 
 interface InventorySaveData
 {
     score: number;
+    items: ItemSaveData[];
+}
+
+interface ItemSaveData
+{
+    key: ItemKey;
+    quantity: number;
 }

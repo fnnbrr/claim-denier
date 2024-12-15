@@ -32,6 +32,7 @@
   }
 
   .item-list {
+    width: 100%;
     overflow-y: auto;
   }
 </style>

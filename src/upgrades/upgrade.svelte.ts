@@ -8,18 +8,20 @@ export abstract class Upgrade
 
     get isOwned(): boolean
     {
-        return this.#isOwned;
+        return this._isOwned;
     };
 
-    #isOwned: boolean = $state(false);
+    protected _isOwned: boolean = $state(false);
 
     setIsOwned(isOwned: boolean, modifyScore: boolean): void
     {
+        if (isOwned === this._isOwned) return;
+
         if (modifyScore)
         {
             Inventory.instance.score -= this.cost;
         }
 
-        this.#isOwned = isOwned;
+        this._isOwned = isOwned;
     }
 }

@@ -1,6 +1,7 @@
 import { allItems } from "./items/all-items";
 import { formatScore, FormatStyle } from "./format-score";
 import { allUpgrades } from "../upgrades/all-upgrades";
+import { StatManager, Stats } from "./stats/stat-manager";
 
 declare global
 {
@@ -93,7 +94,7 @@ export class Inventory
 
     onClick()
     {
-        this.score += 1;
+        this.score += StatManager.instance.getStat(Stats.ScorePerClick).modify(1);
     }
 }
 

@@ -1,3 +1,4 @@
+import { StatManager, Stats } from "$lib/stats/stat-manager";
 import { Upgrade } from "./upgrade.svelte";
 
 /**
@@ -18,6 +19,8 @@ export class BasicUpgrade extends Upgrade
 
     setIsOwned(isOwned: boolean, modifyScore: boolean): void
     {
+        if (isOwned === this._isOwned) return;
+
         super.setIsOwned(isOwned, modifyScore);
 
         if (isOwned && modifyScore)
@@ -25,6 +28,14 @@ export class BasicUpgrade extends Upgrade
             console.log("bought upgrade");
         }
 
-        // TODO: modify stats
+        // TODO: temp
+        if (isOwned)
+        {
+            StatManager.instance.getStat(Stats.ScorePerClick).addBonus += 1;
+        }
+        else
+        {
+            StatManager.instance.getStat(Stats.ScorePerClick).addBonus -= 1;
+        }
     }
 };

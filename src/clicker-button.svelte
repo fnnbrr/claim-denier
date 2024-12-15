@@ -11,4 +11,8 @@
   }
 </script>
 
-<button {onclick} {oncontextmenu}> DENY </button>
+<button {onclick} {oncontextmenu}>
+  DENY
+  <br />
+  CLAIM
+</button>

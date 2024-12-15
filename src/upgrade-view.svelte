@@ -9,7 +9,7 @@
   let { upgrade }: Props = $props();
 
   function onclick() {
-    upgrade.buy(true);
+    upgrade.setIsOwned(true, true);
   }
 
   function isDisabled(): boolean {

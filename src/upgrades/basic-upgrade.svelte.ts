@@ -16,9 +16,9 @@ export class BasicUpgrade extends Upgrade
         this.cost = cost;
     }
 
-    buy(modifyScore: boolean): void
+    setIsOwned(isOwned: boolean, modifyScore: boolean): void
     {
-        super.buy(modifyScore);
+        super.setIsOwned(isOwned, modifyScore);
 
         console.log("bought upgrade");
         // TODO: modify stats

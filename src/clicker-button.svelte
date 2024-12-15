@@ -4,6 +4,11 @@
   function onclick() {
     Inventory.instance.onClick();
   }
+
+  function oncontextmenu(e: MouseEvent) {
+    e.preventDefault();
+    onclick();
+  }
 </script>
 
-<button {onclick}> DENY </button>
+<button {onclick} {oncontextmenu}> DENY </button>

@@ -1,5 +1,6 @@
 import { allItems, ItemKey } from "./items/all-items";
 import { formatScore, FormatStyle } from "./format-score";
+import { allUpgrades, type UpgradeKey } from "../upgrades/all-upgrades";
 
 const saveKey: string = "claim-denier-inventory-save";
 
@@ -68,6 +69,26 @@ export class Inventory
                     console.warn(`Item with key '${itemSaveData.key}' not found`);
                 }
             }
+
+            // Zero out ownership of all upgrades before restoring them from save
+            for (const upgrade of allUpgrades.values())
+            {
+                upgrade.setIsOwned(false, false);
+            }
+
+            for (const upgradeSaveData of save.upgrades)
+            {
+                const upgrade = allUpgrades.get(upgradeSaveData.key);
+
+                if (upgrade !== undefined)
+                {
+                    upgrade.setIsOwned(upgradeSaveData.isOwned, false);
+                }
+                else
+                {
+                    console.warn(`Upgrade with key '${upgradeSaveData.key}' not found`);
+                }
+            }
         }
     }
 
@@ -79,7 +100,9 @@ export class Inventory
         {
             score: this.score,
             items: Array.from(allItems, ([key, item]): ItemSaveData =>
-                ({ key: key, quantity: item.quantity }))
+                ({ key: key, quantity: item.quantity })),
+            upgrades: Array.from(allUpgrades, ([key, upgrade]): UpgradeSaveData =>
+                ({ key: key, isOwned: upgrade.isOwned })),
         };
 
         localStorage.setItem(saveKey, JSON.stringify(save));
@@ -99,7 +122,8 @@ export class Inventory
         const save: InventorySaveData =
         {
             score: 0,
-            items: []
+            items: [],
+            upgrades: [],
         };
 
         localStorage.setItem(saveKey, JSON.stringify(save));
@@ -112,10 +136,17 @@ interface InventorySaveData
 {
     score: number;
     items: ItemSaveData[];
+    upgrades: UpgradeSaveData[];
 }
 
 interface ItemSaveData
 {
     key: ItemKey;
     quantity: number;
+}
+
+interface UpgradeSaveData
+{
+    key: UpgradeKey;
+    isOwned: boolean;
 }

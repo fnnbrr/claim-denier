@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Inventory } from "$lib/inventory.svelte";
+  import "$lib/save-manager.svelte";
   import "../app.css";
   import GameView from "../game-view.svelte";
   import Store from "../store.svelte";

@@ -1,20 +1,10 @@
 import type { Item } from "./item.svelte";
 import { BasicItem } from "./basic-item.svelte";
 
-// Note: these enum values are used to serialize/deserialize owned item quantities.
-// Changing the values (e.g. swapping 0 and 1) will impact any previous save files.
-export enum ItemKey
-{
-    Intern = 0,
-    AutoClicker = 1,
-    Offshoring = 2,
-    Chatbot = 3,
-}
-
-export const allItems = new Map<ItemKey, Item>(
+export const allItems = new Map<string, Item>(
     [
-        [ItemKey.Intern, new BasicItem("Intern", 1, 10)],
-        [ItemKey.AutoClicker, new BasicItem("Auto-Clicker", 10, 50)],
-        [ItemKey.Offshoring, new BasicItem("Offshoring", 25, 100)],
-        [ItemKey.Chatbot, new BasicItem("Chatbot", 100, 500)],
+        ["intern", new BasicItem("Intern", 1, 10)],
+        ["auto-clicker", new BasicItem("Auto-Clicker", 10, 50)],
+        ["offshoring", new BasicItem("Offshoring", 25, 100)],
+        ["chatbot", new BasicItem("Chatbot", 100, 500)],
     ]);

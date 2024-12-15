@@ -1,8 +1,6 @@
-import { allItems, ItemKey } from "./items/all-items";
+import { allItems } from "./items/all-items";
 import { formatScore, FormatStyle } from "./format-score";
-import { allUpgrades, type UpgradeKey } from "../upgrades/all-upgrades";
-
-const saveKey: string = "claim-denier-inventory-save";
+import { allUpgrades } from "../upgrades/all-upgrades";
 
 declare global
 {
@@ -27,75 +25,56 @@ export class Inventory
 
     constructor()
     {
-        if (typeof localStorage !== "undefined")
-        {
-            setTimeout(() =>
-            {
-                this.load();
 
-                addEventListener("beforeunload", () => this.save());
-            }, 0);
-        }
     }
 
-    load()
+    loadFromSaveData(save: InventorySaveData)
     {
-        const saveString = localStorage.getItem(saveKey);
+        this.score = save.score;
 
-        if (saveString !== null)
+        // Zero out the quantity on all items before restoring them from save
+        for (const item of allItems.values())
         {
-            console.log("Loading save");
+            item.incrementQuantity(-item.quantity, false);
+        }
 
-            const save: InventorySaveData = JSON.parse(saveString);
+        for (const itemSaveData of save.items)
+        {
+            const item = allItems.get(itemSaveData.key);
 
-            this.score = save.score;
-
-            // Zero out the quantity on all items before restoring them from save
-            for (const item of allItems.values())
+            if (item !== undefined)
             {
-                item.incrementQuantity(-item.quantity, false);
+                item.incrementQuantity(itemSaveData.quantity, false);
             }
-
-            for (const itemSaveData of save.items)
+            else
             {
-                const item = allItems.get(itemSaveData.key);
-
-                if (item !== undefined)
-                {
-                    item.incrementQuantity(itemSaveData.quantity, false);
-                }
-                else
-                {
-                    console.warn(`Item with key '${itemSaveData.key}' not found`);
-                }
+                console.warn(`Item with key '${itemSaveData.key}' not found`);
             }
+        }
 
-            // Zero out ownership of all upgrades before restoring them from save
-            for (const upgrade of allUpgrades.values())
+        // Zero out ownership of all upgrades before restoring them from save
+        for (const upgrade of allUpgrades.values())
+        {
+            upgrade.setIsOwned(false, false);
+        }
+
+        for (const upgradeSaveData of save.upgrades)
+        {
+            const upgrade = allUpgrades.get(upgradeSaveData.key);
+
+            if (upgrade !== undefined)
             {
-                upgrade.setIsOwned(false, false);
+                upgrade.setIsOwned(upgradeSaveData.isOwned, false);
             }
-
-            for (const upgradeSaveData of save.upgrades)
+            else
             {
-                const upgrade = allUpgrades.get(upgradeSaveData.key);
-
-                if (upgrade !== undefined)
-                {
-                    upgrade.setIsOwned(upgradeSaveData.isOwned, false);
-                }
-                else
-                {
-                    console.warn(`Upgrade with key '${upgradeSaveData.key}' not found`);
-                }
+                console.warn(`Upgrade with key '${upgradeSaveData.key}' not found`);
             }
         }
     }
 
-    save()
+    getSaveData(): InventorySaveData
     {
-        console.log("saving");
-
         const save: InventorySaveData =
         {
             score: this.score,
@@ -105,7 +84,7 @@ export class Inventory
                 ({ key: key, isOwned: upgrade.isOwned })),
         };
 
-        localStorage.setItem(saveKey, JSON.stringify(save));
+        return save;
     }
 
     score: number = $state(0);
@@ -116,23 +95,9 @@ export class Inventory
     {
         this.score += 1;
     }
-
-    clearSave()
-    {
-        const save: InventorySaveData =
-        {
-            score: 0,
-            items: [],
-            upgrades: [],
-        };
-
-        localStorage.setItem(saveKey, JSON.stringify(save));
-
-        this.load();
-    }
 }
 
-interface InventorySaveData
+export interface InventorySaveData
 {
     score: number;
     items: ItemSaveData[];
@@ -141,12 +106,12 @@ interface InventorySaveData
 
 interface ItemSaveData
 {
-    key: ItemKey;
+    key: string;
     quantity: number;
 }
 
 interface UpgradeSaveData
 {
-    key: UpgradeKey;
+    key: string;
     isOwned: boolean;
 }

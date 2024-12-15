@@ -20,7 +20,11 @@ export class BasicUpgrade extends Upgrade
     {
         super.setIsOwned(isOwned, modifyScore);
 
-        console.log("bought upgrade");
+        if (isOwned && modifyScore)
+        {
+            console.log("bought upgrade");
+        }
+
         // TODO: modify stats
     }
 };

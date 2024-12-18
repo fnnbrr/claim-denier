@@ -1,26 +1,26 @@
 import type { Item } from "./item.svelte";
 import { BasicItem } from "./basic-item.svelte";
 
-import internIcon from "$lib/assets/images/item-icons/intern.png";
-import rubberStampIcon from "$lib/assets/images/item-icons/rubber-stamp.png";
-import paperShredderIcon from "$lib/assets/images/item-icons/paper-shredder.png";
-import denialHotlineIcon from "$lib/assets/images/item-icons/denial-hotline.png";
-import finePrintMagnifierIcon from "$lib/assets/images/item-icons/fine-print-magnifier.png";
-import preAuthorizationMazeIcon from "$lib/assets/images/item-icons/pre-authorization-maze.png";
-import legaleseGeneratorIcon from "$lib/assets/images/item-icons/legalese-generator.png";
-import bureaucracyBotIcon from "$lib/assets/images/item-icons/bureaucracy-bot.png";
-import codingOverlordIcon from "$lib/assets/images/item-icons/coding-overlord.png";
-import claimsBlackHoleIcon from "$lib/assets/images/item-icons/claims-black-hole.png";
-import aiDenialAlgorithmIcon from "$lib/assets/images/item-icons/ai-denial-algorithm.png";
-import redTapeFactoryIcon from "$lib/assets/images/item-icons/red-tape-factory.png";
-import policyContradictionAnalyzerIcon from "$lib/assets/images/item-icons/policy-contradiction-analyzer.png";
-import managerialObfuscatorIcon from "$lib/assets/images/item-icons/managerial-obfuscator.png";
-import preExistingConditionScannerIcon from "$lib/assets/images/item-icons/pre-existing-condition-scanner.png";
-import claimVaporizerIcon from "$lib/assets/images/item-icons/claim-vaporizer.png";
-import corporateComplianceShieldIcon from "$lib/assets/images/item-icons/corporate-compliance-shield.png";
-import denialOverlordAIIcon from "$lib/assets/images/item-icons/denial-overlord-ai.png";
-import executiveRejectionSuiteIcon from "$lib/assets/images/item-icons/executive-rejection-suite.png";
-import insuranceNukeIcon from "$lib/assets/images/item-icons/insurance-nuke.png";
+import internIcon from "$lib/assets/images/fluent-emoji/nerd_face_3d.png";
+import rubberStampIcon from "$lib/assets/images/fluent-emoji/love_letter_3d.png";
+import paperShredderIcon from "$lib/assets/images/fluent-emoji/wastebasket_3d.png";
+import denialHotlineIcon from "$lib/assets/images/fluent-emoji/telephone_3d.png";
+import finePrintMagnifierIcon from "$lib/assets/images/fluent-emoji/magnifying_glass_tilted_left_3d.png";
+import preAuthorizationMazeIcon from "$lib/assets/images/fluent-emoji/cyclone_3d.png";
+import legaleseGeneratorIcon from "$lib/assets/images/fluent-emoji/scroll_3d.png";
+import bureaucracyBotIcon from "$lib/assets/images/fluent-emoji/robot_3d.png";
+import codingOverlordIcon from "$lib/assets/images/fluent-emoji/man_technologist_3d_medium.png";
+import claimsBlackHoleIcon from "$lib/assets/images/fluent-emoji/black_circle_3d.png";
+import aiDenialAlgorithmIcon from "$lib/assets/images/fluent-emoji/floppy_disk_3d.png";
+import redTapeFactoryIcon from "$lib/assets/images/fluent-emoji/factory_3d.png";
+import policyContradictionAnalyzerIcon from "$lib/assets/images/fluent-emoji/abacus_3d.png";
+import managerialObfuscatorIcon from "$lib/assets/images/fluent-emoji/necktie_3d.png";
+import preExistingConditionScannerIcon from "$lib/assets/images/fluent-emoji/microscope_3d.png";
+import claimVaporizerIcon from "$lib/assets/images/fluent-emoji/dashing_away_3d.png";
+import corporateComplianceShieldIcon from "$lib/assets/images/fluent-emoji/shield_3d.png";
+import denialOverlordAIIcon from "$lib/assets/images/fluent-emoji/brain_3d.png";
+import executiveRejectionSuiteIcon from "$lib/assets/images/fluent-emoji/office_building_3d.png";
+import insuranceNukeIcon from "$lib/assets/images/fluent-emoji/bomb_3d.png";
 
 export const allItems = new Map<string, Item>([
     ["intern", new BasicItem("Intern", 0.1, 15, internIcon)],

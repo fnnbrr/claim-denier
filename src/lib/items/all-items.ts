@@ -20,7 +20,7 @@ import claimVaporizerIcon from "$lib/assets/images/fluent-emoji/dashing_away_3d.
 import corporateComplianceShieldIcon from "$lib/assets/images/fluent-emoji/shield_3d.png";
 import denialOverlordAIIcon from "$lib/assets/images/fluent-emoji/brain_3d.png";
 import executiveRejectionSuiteIcon from "$lib/assets/images/fluent-emoji/office_building_3d.png";
-import insuranceNukeIcon from "$lib/assets/images/fluent-emoji/bomb_3d.png";
+import insuranceNukeIcon from "$lib/assets/images/fluent-emoji/radioactive_3d.png";
 
 export const allItems: Item[] =
     [

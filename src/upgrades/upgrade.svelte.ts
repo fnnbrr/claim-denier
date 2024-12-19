@@ -7,6 +7,8 @@ export abstract class Upgrade
 
     abstract readonly cost: number;
 
+    abstract readonly iconPath: string;
+
     get isOwned(): boolean
     {
         return this._isOwned;

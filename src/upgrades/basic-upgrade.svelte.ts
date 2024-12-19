@@ -9,16 +9,18 @@ export class BasicUpgrade extends Upgrade
     readonly key: string;
     readonly name: string;
     readonly cost: number;
+    readonly iconPath: string;
     private readonly statAddBonuses: Map<StatType, number>;
     private readonly statMultBonuses: Map<StatType, number>;
 
-    constructor(key: string, name: string, cost: number, statAddBonuses?: Map<StatType, number>, statMultBonuses?: Map<StatType, number>)
+    constructor(key: string, name: string, cost: number, iconPath: string, statAddBonuses?: Map<StatType, number>, statMultBonuses?: Map<StatType, number>)
     {
         super();
 
         this.key = key;
         this.name = name;
         this.cost = cost;
+        this.iconPath = iconPath;
 
         this.statAddBonuses = statAddBonuses ?? new Map<StatType, number>();
         this.statMultBonuses = statMultBonuses ?? new Map<StatType, number>();

@@ -31,6 +31,7 @@
   class="upgrade-view"
 >
   <p>{upgrade.name}</p>
+  <img src={upgrade.iconPath} alt="upgrade icon" />
   {#if !upgrade.isOwned}
     <p>{formatScore(upgrade.cost, FormatStyle.short)} denials</p>
   {/if}
@@ -39,5 +40,9 @@
 <style>
   .upgrade-view {
     aspect-ratio: 1;
+  }
+
+  img {
+    width: 100%;
   }
 </style>

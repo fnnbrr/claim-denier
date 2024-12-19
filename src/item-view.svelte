@@ -38,12 +38,47 @@
 </script>
 
 <button {onclick} disabled={isDisabled()} hidden={isHidden()} class="item-view">
-  <p>{item.name} x{item.quantity}</p>
-  <p><img src={item.iconPath} alt="item icon" />{scoreText}</p>
+  <img
+    src={item.iconPath}
+    alt="item icon"
+    class="left"
+    style="filter: grayscale({isDisabled() ? 1 : 0});"
+  />
+  <div class="center">
+    <p>{item.name}</p>
+    <p>🚫{scoreText}</p>
+  </div>
+  <p class="right">x{item.quantity}</p>
 </button>
 
 <style>
   .item-view {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .left {
+    height: 64px;
+    margin-right: 15px;
+  }
+
+  .center {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: start;
+  }
+
+  .center > p {
+    margin: 0;
+  }
+
+  .right {
+    flex: 1;
+    text-align: end;
+    align-self: center;
   }
 </style>

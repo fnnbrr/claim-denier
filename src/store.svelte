@@ -12,6 +12,6 @@
   .store {
     display: flex;
     flex-direction: row;
-    flex: 1;
+    width: max(200px, 33%);
   }
 </style>

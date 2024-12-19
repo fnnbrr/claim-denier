@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { formatScore, FormatStyle } from "$lib/format-score";
   import { Inventory } from "$lib/inventory.svelte";
   import type { Upgrade } from "./upgrades/upgrade.svelte";
 
@@ -30,11 +29,11 @@
   hidden={isHidden()}
   class="upgrade-view"
 >
-  <p>{upgrade.name}</p>
-  <img src={upgrade.iconPath} alt="upgrade icon" />
-  {#if !upgrade.isOwned}
-    <p>{formatScore(upgrade.cost, FormatStyle.short)} denials</p>
-  {/if}
+  <img
+    src={upgrade.iconPath}
+    alt="upgrade icon"
+    style="filter: grayscale({isDisabled() ? 1 : 0});"
+  />
 </button>
 
 <style>

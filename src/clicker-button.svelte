@@ -44,6 +44,10 @@
 <audio src={clickSfx} volume={0.5} bind:this={audio}></audio>
 
 <style>
+  img {
+    margin-top: 50px;
+  }
+
   map {
     cursor: pointer;
   }

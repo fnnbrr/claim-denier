@@ -6,15 +6,17 @@ import { Upgrade } from "./upgrade.svelte";
  */
 export class BasicUpgrade extends Upgrade
 {
+    readonly key: string;
     readonly name: string;
     readonly cost: number;
     private readonly statAddBonuses: Map<StatType, number>;
     private readonly statMultBonuses: Map<StatType, number>;
 
-    constructor(name: string, cost: number, statAddBonuses?: Map<StatType, number>, statMultBonuses?: Map<StatType, number>)
+    constructor(key: string, name: string, cost: number, statAddBonuses?: Map<StatType, number>, statMultBonuses?: Map<StatType, number>)
     {
         super();
 
+        this.key = key;
         this.name = name;
         this.cost = cost;
 

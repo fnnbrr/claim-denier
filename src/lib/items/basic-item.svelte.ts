@@ -6,15 +6,17 @@ import { ScoreAccumulator } from "$lib/score-accumulator.svelte";
  */
 export class BasicItem extends Item
 {
+    readonly key: string;
     readonly name: string;
     readonly scorePerSecond: number;
     readonly baseCost: number;
     readonly iconPath: string;
 
-    constructor(name: string, scorePerSecond: number, baseCost: number, iconPath: string)
+    constructor(key: string, name: string, scorePerSecond: number, baseCost: number, iconPath: string)
     {
         super();
 
+        this.key = key;
         this.name = name;
         this.scorePerSecond = scorePerSecond;
         this.baseCost = baseCost;

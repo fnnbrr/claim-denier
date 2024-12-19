@@ -2,6 +2,7 @@ import { Inventory } from "$lib/inventory.svelte";
 
 export abstract class Item
 {
+    abstract readonly key: string;
     abstract readonly name: string;
 
     get quantity(): number

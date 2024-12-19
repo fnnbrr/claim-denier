@@ -2,9 +2,10 @@ import { Inventory } from "$lib/inventory.svelte";
 
 export abstract class Upgrade
 {
-    abstract name: string;
+    abstract readonly key: string;
+    abstract readonly name: string;
 
-    abstract cost: number;
+    abstract readonly cost: number;
 
     get isOwned(): boolean
     {

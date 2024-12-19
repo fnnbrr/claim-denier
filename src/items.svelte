@@ -16,7 +16,7 @@
     <option value={-100}>Sell 100</option>
   </select>
   <div class="item-list">
-    {#each allItems as [key, item] (key)}
+    {#each allItems as item (item.key)}
       <ItemView {item} {buySellQuantity}></ItemView>
     {/each}
   </div>

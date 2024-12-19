@@ -35,14 +35,14 @@ export class Inventory
         this.prevMaxScore = save.maxScore;
 
         // Zero out the quantity on all items before restoring them from save
-        for (const item of allItems.values())
+        for (const item of allItems)
         {
             item.incrementQuantity(-item.quantity, false);
         }
 
         for (const itemSaveData of save.items)
         {
-            const item = allItems.get(itemSaveData.key);
+            const item = allItems.find(item => item.key === itemSaveData.key);
 
             if (item !== undefined)
             {
@@ -55,14 +55,14 @@ export class Inventory
         }
 
         // Zero out ownership of all upgrades before restoring them from save
-        for (const upgrade of allUpgrades.values())
+        for (const upgrade of allUpgrades)
         {
             upgrade.setIsOwned(false, false);
         }
 
         for (const upgradeSaveData of save.upgrades)
         {
-            const upgrade = allUpgrades.get(upgradeSaveData.key);
+            const upgrade = allUpgrades.find(upgrade => upgrade.key === upgradeSaveData.key);
 
             if (upgrade !== undefined)
             {
@@ -81,10 +81,14 @@ export class Inventory
         {
             score: this.score,
             maxScore: this.maxScore,
-            items: Array.from(allItems, ([key, item]): ItemSaveData =>
-                ({ key: key, quantity: item.quantity })),
-            upgrades: Array.from(allUpgrades, ([key, upgrade]): UpgradeSaveData =>
-                ({ key: key, isOwned: upgrade.isOwned })),
+            items: allItems.map(item =>
+            {
+                return { key: item.key, quantity: item.quantity };
+            }),
+            upgrades: allUpgrades.map(upgrade =>
+            {
+                return { key: upgrade.key, isOwned: upgrade.isOwned };
+            }),
         };
 
         return save;

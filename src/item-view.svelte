@@ -57,7 +57,7 @@
     <b>{item.name}</b>
     <p>🚫{scoreText}</p>
   </div>
-  <p class="right">x{item.quantity}</p>
+  <b class="right">x{item.quantity}</b>
   <div class="tooltip-positioning">
     <div class="tooltip">
       <p>{item.getTooltipText()}</p>

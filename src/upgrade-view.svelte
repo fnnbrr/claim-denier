@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Inventory } from "$lib/inventory.svelte";
   import type { Upgrade } from "./upgrades/upgrade.svelte";
+  import checkMarkIcon from "$lib/assets/images/checkmark-64.png";
 
   interface Props {
     upgrade: Upgrade;
@@ -34,10 +35,17 @@
   class="upgrade-view"
 >
   <img
+    class="icon"
     src={upgrade.iconPath}
     alt="upgrade icon"
-    style="filter: grayscale({isDisabled() ? 1 : 0});"
+    style="filter: grayscale({!upgrade.isOwned &&
+    upgrade.cost > Inventory.instance.score
+      ? 1
+      : 0});"
   />
+  {#if upgrade.isOwned}
+    <img class="own-icon" src={checkMarkIcon} alt="own icon" />
+  {/if}
   <div class="tooltip-positioning">
     <div class="tooltip">
       <b>{upgrade.name}</b>
@@ -53,8 +61,18 @@
     position: relative;
   }
 
-  img {
+  .icon {
     width: 100%;
+  }
+
+  .own-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0px;
+    right: 0px;
+    transform: translate(45%, -45%);
+    z-index: 1;
   }
 
   .tooltip-positioning {
@@ -66,7 +84,7 @@
   .tooltip {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     background-color: gainsboro;
     transform: translate(-100%, -50%);
     width: max-content;

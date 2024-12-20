@@ -40,7 +40,9 @@
   />
   <div class="tooltip-positioning">
     <div class="tooltip">
-      <p>tooltip</p>
+      <b>{upgrade.name}</b>
+      <p>{upgrade.isOwned ? "Owned" : "🚫" + upgrade.cost}</p>
+      <p>{upgrade.getTooltipText()}</p>
     </div>
   </div>
 </button>
@@ -67,9 +69,18 @@
     z-index: 1;
     background-color: gainsboro;
     transform: translate(-100%, -50%);
+    width: max-content;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .upgrade-view:hover .tooltip {
     display: initial;
+  }
+
+  .tooltip p {
+    margin-block: 4px;
   }
 </style>

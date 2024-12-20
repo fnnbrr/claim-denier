@@ -45,4 +45,18 @@ export class StatManager
 
         return statMod;
     }
+
+    getStatName(statType: StatType): string
+    {
+        switch (statType)
+        {
+            case 0:
+                return "Score per Click";
+            case 1:
+                return "Score per Second";
+            default:
+                console.error(`No name set for StatType ${statType}`);
+                return "Stat";
+        }
+    }
 }

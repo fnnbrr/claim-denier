@@ -49,4 +49,21 @@ export class BasicUpgrade extends Upgrade
             StatManager.instance.getStat(statType).multBonus += statSign * multBonus;
         }
     }
+
+    getTooltipText(): string
+    {
+        let toolTipText: string = "";
+
+        for (const [statType, addBonus] of this.statAddBonuses)
+        {
+            toolTipText += `• ${StatManager.instance.getStatName(statType)} + ${addBonus}`;
+        }
+
+        for (const [statType, multBonus] of this.statMultBonuses)
+        {
+            toolTipText += `• ${StatManager.instance.getStatName(statType)} x ${1 + multBonus}`;
+        }
+
+        return toolTipText;
+    }
 };

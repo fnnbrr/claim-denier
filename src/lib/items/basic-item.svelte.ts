@@ -39,4 +39,9 @@ export class BasicItem extends Item
     {
         return 0.5 * this.getCost();
     }
+
+    getTooltipText(): string
+    {
+        return `Denies ${this.scorePerSecond} claims per second`;
+    }
 };

@@ -54,13 +54,13 @@
     style="filter: grayscale({isDisabled() ? 1 : 0});"
   />
   <div class="center">
-    <p>{item.name}</p>
+    <b>{item.name}</b>
     <p>🚫{scoreText}</p>
   </div>
   <p class="right">x{item.quantity}</p>
   <div class="tooltip-positioning">
     <div class="tooltip">
-      <p>tooltip</p>
+      <p>{item.getTooltipText()}</p>
     </div>
   </div>
 </button>
@@ -109,6 +109,9 @@
     z-index: 1;
     background-color: gainsboro;
     transform: translate(-100%, -50%);
+    width: max-content;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .item-view:hover .tooltip {

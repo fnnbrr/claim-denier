@@ -27,4 +27,6 @@ export abstract class Upgrade
 
         this._isOwned = isOwned;
     }
+
+    abstract getTooltipText(): string;
 }

@@ -35,4 +35,6 @@ export abstract class Item
     abstract getCost(): number;
 
     abstract getRefundAmount(): number;
+
+    abstract getTooltipText(): string;
 }

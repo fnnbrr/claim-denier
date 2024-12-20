@@ -29,10 +29,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
+    gap: 4px;
   }
 
   .item-list {
     width: 100%;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 2px;
   }
 </style>

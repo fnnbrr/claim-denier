@@ -58,6 +58,11 @@
     <p>🚫{scoreText}</p>
   </div>
   <p class="right">x{item.quantity}</p>
+  <div class="tooltip-positioning">
+    <div class="tooltip">
+      <p>tooltip</p>
+    </div>
+  </div>
 </button>
 
 <style>
@@ -65,6 +70,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    position: relative;
   }
 
   .left {
@@ -89,5 +95,23 @@
     flex: 1;
     text-align: end;
     align-self: center;
+  }
+
+  .tooltip-positioning {
+    position: absolute;
+    left: -8px;
+    align-self: center;
+  }
+
+  .tooltip {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    background-color: gainsboro;
+    transform: translate(-100%, -50%);
+  }
+
+  .item-view:hover .tooltip {
+    display: initial;
   }
 </style>

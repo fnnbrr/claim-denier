@@ -38,14 +38,38 @@
     alt="upgrade icon"
     style="filter: grayscale({isDisabled() ? 1 : 0});"
   />
+  <div class="tooltip-positioning">
+    <div class="tooltip">
+      <p>tooltip</p>
+    </div>
+  </div>
 </button>
 
 <style>
   .upgrade-view {
     aspect-ratio: 1;
+    position: relative;
   }
 
   img {
     width: 100%;
+  }
+
+  .tooltip-positioning {
+    position: absolute;
+    left: -8px;
+    top: 50%;
+  }
+
+  .tooltip {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    background-color: gainsboro;
+    transform: translate(-100%, -50%);
+  }
+
+  .upgrade-view:hover .tooltip {
+    display: initial;
   }
 </style>

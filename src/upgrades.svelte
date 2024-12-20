@@ -6,8 +6,8 @@
 <div class="upgrades">
   <h3>Upgrades</h3>
   <div class="upgrade-list">
-    {#each allUpgrades as upgrade (upgrade.key)}
-      <UpgradeView {upgrade}></UpgradeView>
+    {#each allUpgrades as upgrade, index (upgrade.key)}
+      <UpgradeView {upgrade} {index}></UpgradeView>
     {/each}
   </div>
 </div>

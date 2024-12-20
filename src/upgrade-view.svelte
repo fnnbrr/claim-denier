@@ -4,12 +4,17 @@
 
   interface Props {
     upgrade: Upgrade;
+    index: number;
   }
 
-  let { upgrade }: Props = $props();
+  let { upgrade, index }: Props = $props();
 
   function onclick() {
     upgrade.setIsOwned(true, true);
+    Inventory.instance.maxUpgradeIndex = Math.max(
+      Inventory.instance.maxUpgradeIndex,
+      index
+    );
   }
 
   function isDisabled(): boolean {
@@ -17,9 +22,8 @@
   }
 
   function isHidden(): boolean {
-    if (upgrade.cost < 20) return false;
-
-    return Inventory.instance.maxScore < 0.3 * upgrade.cost;
+    // Only show upgrades the player has bought + the next two
+    return index > Inventory.instance.maxUpgradeIndex + 2;
   }
 </script>
 

@@ -73,6 +73,9 @@ export class Inventory
                 console.warn(`Upgrade with key '${upgradeSaveData.key}' not found`);
             }
         }
+
+        this.maxItemIndex = save.maxItemIndex;
+        this.maxUpgradeIndex = save.maxUpgradeIndex;
     }
 
     getSaveData(): InventorySaveData
@@ -89,6 +92,8 @@ export class Inventory
             {
                 return { key: upgrade.key, isOwned: upgrade.isOwned };
             }),
+            maxItemIndex: this.maxItemIndex,
+            maxUpgradeIndex: this.maxUpgradeIndex,
         };
 
         return save;
@@ -106,6 +111,9 @@ export class Inventory
     });
     private prevMaxScore: number = 0;
 
+    maxItemIndex = $state(-1);
+    maxUpgradeIndex = $state(-1);
+
     onClick()
     {
         this.score += StatManager.instance.getStat(Stats.ScorePerClick).modify(1);
@@ -118,6 +126,8 @@ export interface InventorySaveData
     maxScore: number;
     items: ItemSaveData[];
     upgrades: UpgradeSaveData[];
+    maxItemIndex: number;
+    maxUpgradeIndex: number;
 }
 
 interface ItemSaveData

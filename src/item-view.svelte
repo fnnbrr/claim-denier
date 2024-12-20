@@ -5,13 +5,18 @@
 
   interface Props {
     item: Item;
+    index: number;
     buySellQuantity: number;
   }
 
-  let { item, buySellQuantity }: Props = $props();
+  let { item, index, buySellQuantity }: Props = $props();
 
   function onclick() {
     item.incrementQuantity(buySellQuantity, true);
+    Inventory.instance.maxItemIndex = Math.max(
+      Inventory.instance.maxItemIndex,
+      index
+    );
   }
 
   let scoreText: string = $derived.by(() => {
@@ -31,13 +36,17 @@
   }
 
   function isHidden(): boolean {
-    if (item.baseCost < 20) return false;
-
-    return Inventory.instance.maxScore < 0.3 * item.baseCost;
+    // Only show items the player has bought + the next two
+    return index > Inventory.instance.maxItemIndex + 2;
   }
 </script>
 
-<button {onclick} disabled={isDisabled()} hidden={isHidden()} class="item-view">
+<button
+  {onclick}
+  disabled={isDisabled()}
+  hidden={isHidden()}
+  class={isHidden() ? "" : "item-view"}
+>
   <img
     src={item.iconPath}
     alt="item icon"

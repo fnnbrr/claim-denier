@@ -25,7 +25,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, 64px);
-    gap: 2px;
+    gap: 3px;
     padding-top: 8px;
     overflow-y: auto;
     overflow-x: hidden;

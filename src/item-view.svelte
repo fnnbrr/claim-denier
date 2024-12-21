@@ -71,6 +71,10 @@
     display: flex;
     flex-direction: row;
     position: relative;
+    background-color: whitesmoke;
+    border-color: slategray;
+    border-width: 2px;
+    border-radius: 6px;
   }
 
   .left {
@@ -107,11 +111,15 @@
     display: none;
     position: fixed;
     z-index: 1;
-    background-color: gainsboro;
     transform: translate(-100%, -50%);
     width: max-content;
     padding-left: 16px;
     padding-right: 16px;
+    background-color: aliceblue;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 6px;
   }
 
   .item-view:hover .tooltip {

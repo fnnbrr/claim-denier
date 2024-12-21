@@ -39,6 +39,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    gap: 2px;
+    gap: 3px;
+  }
+
+  select {
+    background-color: whitesmoke;
+    border-color: slategray;
+    border-width: 2px;
+    border-radius: 6px;
   }
 </style>

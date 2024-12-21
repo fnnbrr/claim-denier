@@ -59,6 +59,10 @@
   .upgrade-view {
     aspect-ratio: 1;
     position: relative;
+    background-color: whitesmoke;
+    border-color: slategray;
+    border-width: 2px;
+    border-radius: 6px;
   }
 
   .icon {
@@ -85,13 +89,17 @@
     display: none;
     position: fixed;
     z-index: 2;
-    background-color: gainsboro;
     transform: translate(-100%, -50%);
     width: max-content;
     padding-top: 8px;
     padding-bottom: 8px;
     padding-left: 16px;
     padding-right: 16px;
+    background-color: aliceblue;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 6px;
   }
 
   .upgrade-view:hover .tooltip {

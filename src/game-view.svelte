@@ -17,5 +17,6 @@
     flex: 1;
     align-items: center;
     justify-content: start;
+    padding-top: 25px;
   }
 </style>

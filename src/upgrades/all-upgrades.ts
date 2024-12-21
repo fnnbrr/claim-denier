@@ -1,5 +1,4 @@
-import type { Upgrade } from "./upgrade.svelte";
-import { BasicUpgrade } from "./basic-upgrade.svelte";
+import { Upgrade } from "./upgrade.svelte";
 import { Stats } from "$lib/stats/stat-manager";
 
 import doubleClickIcon from "$lib/assets/images/fluent-emoji/victory_hand_3d_default.png";
@@ -34,34 +33,34 @@ import ultraAutomationIcon from "$lib/assets/images/fluent-emoji/recycling_symbo
 import alienTouchIcon from "$lib/assets/images/fluent-emoji/alien_3d.png";
 
 export const allUpgrades: Upgrade[] = [
-    new BasicUpgrade("double-click", "Double Click", 10, doubleClickIcon, new Map([[Stats.ScorePerClick, 1]]), undefined),
-    new BasicUpgrade("fast-internet", "Fast Internet", 25, fastInternetIcon, undefined, new Map([[Stats.ScorePerSecond, 0.05]])),
-    new BasicUpgrade("grip-trainer", "Grip Trainer", 50, gripTrainerIcon, new Map([[Stats.ScorePerClick, 2]]), undefined),
-    new BasicUpgrade("multithreaded-denial", "Multithreaded Denial", 500, multithreadedDenialIcon, undefined, new Map([[Stats.ScorePerSecond, 0.1]])),
-    new BasicUpgrade("keyboard-shortcuts", "Keyboard Shortcuts", 100, keyboardShortcutsIcon, new Map([[Stats.ScorePerClick, 5]]), undefined),
-    new BasicUpgrade("offshore-efficiency", "Offshore Efficiency", 1000, offshoreEfficiencyIcon, undefined, new Map([[Stats.ScorePerSecond, 0.5]])),
-    new BasicUpgrade("laser-printer", "Laser Printer", 250, laserPrinterIcon, new Map([[Stats.ScorePerClick, 10]]), undefined),
-    new BasicUpgrade("policy-parser", "Policy Parser", 2000, policyParserIcon, undefined, new Map([[Stats.ScorePerSecond, 1]])),
-    new BasicUpgrade("batch-processing", "Batch Processing", 5000, batchProcessingIcon, undefined, new Map([[Stats.ScorePerSecond, 2]])),
-    new BasicUpgrade("extra-stapler", "Extra Stapler", 1000, extraStaplerIcon, new Map([[Stats.ScorePerClick, 15]]), undefined),
-    new BasicUpgrade("legal-team", "Legal Team", 15000, legalTeamIcon, undefined, new Map([[Stats.ScorePerSecond, 5]])),
-    new BasicUpgrade("ergonomic-mouse", "Ergonomic Mouse", 3000, ergonomicMouseIcon, new Map([[Stats.ScorePerClick, 20]]), undefined),
-    new BasicUpgrade("server-upgrade", "Server Upgrade", 25000, serverUpgradeIcon, undefined, new Map([[Stats.ScorePerSecond, 10]])),
-    new BasicUpgrade("auto-denial-software", "Auto Denial Software", 10000, autoDenialSoftwareIcon, undefined, new Map([[Stats.ScorePerSecond, 15]])),
-    new BasicUpgrade("pre-filled-templates", "Pre-filled Templates", 5000, preFilledTemplatesIcon, new Map([[Stats.ScorePerClick, 30]]), undefined),
-    new BasicUpgrade("streamlined-paperwork", "Streamlined Paperwork", 50000, streamlinedPaperworkIcon, undefined, new Map([[Stats.ScorePerSecond, 20]])),
-    new BasicUpgrade("dedicated-line", "Dedicated Line", 20000, dedicatedLineIcon, undefined, new Map([[Stats.ScorePerSecond, 25]])),
-    new BasicUpgrade("policy-optimizer", "Policy Optimizer", 75000, policyOptimizerIcon, undefined, new Map([[Stats.ScorePerSecond, 50]])),
-    new BasicUpgrade("ai-enhancer", "AI Enhancer", 100000, aiEnhancerIcon, undefined, new Map([[Stats.ScorePerSecond, 75]])),
-    new BasicUpgrade("click-multiplier", "Click Multiplier", 20000, clickMultiplierIcon, new Map([[Stats.ScorePerClick, 50]]), undefined),
-    new BasicUpgrade("denial-bot", "Denial Bot", 250000, denialBotIcon, undefined, new Map([[Stats.ScorePerSecond, 100]])),
-    new BasicUpgrade("cloud-computing", "Cloud Computing", 500000, cloudComputingIcon, undefined, new Map([[Stats.ScorePerSecond, 150]])),
-    new BasicUpgrade("holographic-interface", "Holographic Interface", 1000000, holographicInterfaceIcon, undefined, new Map([[Stats.ScorePerSecond, 200]])),
-    new BasicUpgrade("quantum-denial", "Quantum Denial", 2000000, quantumDenialIcon, undefined, new Map([[Stats.ScorePerSecond, 300]])),
-    new BasicUpgrade("virtual-assistant", "Virtual Assistant", 500000, virtualAssistantIcon, new Map([[Stats.ScorePerClick, 100]]), undefined),
-    new BasicUpgrade("denial-synergy", "Denial Synergy", 5000000, denialSynergyIcon, undefined, new Map([[Stats.ScorePerSecond, 400]])),
-    new BasicUpgrade("bureaucracy-mastery", "Bureaucracy Mastery", 10000000, bureaucracyMasteryIcon, undefined, new Map([[Stats.ScorePerSecond, 500]])),
-    new BasicUpgrade("laser-guided-mouse", "Laser-Guided Mouse", 5000000, laserGuidedMouseIcon, new Map([[Stats.ScorePerClick, 200]]), undefined),
-    new BasicUpgrade("ultra-automation", "Ultra Automation", 20000000, ultraAutomationIcon, undefined, new Map([[Stats.ScorePerSecond, 1000]])),
-    new BasicUpgrade("alien-touch", "Alien Touch", 50000000, alienTouchIcon, new Map([[Stats.ScorePerClick, 10000]]), undefined)
+    new Upgrade("double-click", "Double Click", 10, doubleClickIcon, new Map([[Stats.ScorePerClick, 1]]), undefined),
+    new Upgrade("fast-internet", "Fast Internet", 25, fastInternetIcon, undefined, new Map([[Stats.ScorePerSecond, 0.05]])),
+    new Upgrade("grip-trainer", "Grip Trainer", 50, gripTrainerIcon, new Map([[Stats.ScorePerClick, 2]]), undefined),
+    new Upgrade("multithreaded-denial", "Multithreaded Denial", 500, multithreadedDenialIcon, undefined, new Map([[Stats.ScorePerSecond, 0.1]])),
+    new Upgrade("keyboard-shortcuts", "Keyboard Shortcuts", 100, keyboardShortcutsIcon, new Map([[Stats.ScorePerClick, 5]]), undefined),
+    new Upgrade("offshore-efficiency", "Offshore Efficiency", 1000, offshoreEfficiencyIcon, undefined, new Map([[Stats.ScorePerSecond, 0.5]])),
+    new Upgrade("laser-printer", "Laser Printer", 250, laserPrinterIcon, new Map([[Stats.ScorePerClick, 10]]), undefined),
+    new Upgrade("policy-parser", "Policy Parser", 2000, policyParserIcon, undefined, new Map([[Stats.ScorePerSecond, 1]])),
+    new Upgrade("batch-processing", "Batch Processing", 5000, batchProcessingIcon, undefined, new Map([[Stats.ScorePerSecond, 2]])),
+    new Upgrade("extra-stapler", "Extra Stapler", 1000, extraStaplerIcon, new Map([[Stats.ScorePerClick, 15]]), undefined),
+    new Upgrade("legal-team", "Legal Team", 15000, legalTeamIcon, undefined, new Map([[Stats.ScorePerSecond, 5]])),
+    new Upgrade("ergonomic-mouse", "Ergonomic Mouse", 3000, ergonomicMouseIcon, new Map([[Stats.ScorePerClick, 20]]), undefined),
+    new Upgrade("server-upgrade", "Server Upgrade", 25000, serverUpgradeIcon, undefined, new Map([[Stats.ScorePerSecond, 10]])),
+    new Upgrade("auto-denial-software", "Auto Denial Software", 10000, autoDenialSoftwareIcon, undefined, new Map([[Stats.ScorePerSecond, 15]])),
+    new Upgrade("pre-filled-templates", "Pre-filled Templates", 5000, preFilledTemplatesIcon, new Map([[Stats.ScorePerClick, 30]]), undefined),
+    new Upgrade("streamlined-paperwork", "Streamlined Paperwork", 50000, streamlinedPaperworkIcon, undefined, new Map([[Stats.ScorePerSecond, 20]])),
+    new Upgrade("dedicated-line", "Dedicated Line", 20000, dedicatedLineIcon, undefined, new Map([[Stats.ScorePerSecond, 25]])),
+    new Upgrade("policy-optimizer", "Policy Optimizer", 75000, policyOptimizerIcon, undefined, new Map([[Stats.ScorePerSecond, 50]])),
+    new Upgrade("ai-enhancer", "AI Enhancer", 100000, aiEnhancerIcon, undefined, new Map([[Stats.ScorePerSecond, 75]])),
+    new Upgrade("click-multiplier", "Click Multiplier", 20000, clickMultiplierIcon, new Map([[Stats.ScorePerClick, 50]]), undefined),
+    new Upgrade("denial-bot", "Denial Bot", 250000, denialBotIcon, undefined, new Map([[Stats.ScorePerSecond, 100]])),
+    new Upgrade("cloud-computing", "Cloud Computing", 500000, cloudComputingIcon, undefined, new Map([[Stats.ScorePerSecond, 150]])),
+    new Upgrade("holographic-interface", "Holographic Interface", 1000000, holographicInterfaceIcon, undefined, new Map([[Stats.ScorePerSecond, 200]])),
+    new Upgrade("quantum-denial", "Quantum Denial", 2000000, quantumDenialIcon, undefined, new Map([[Stats.ScorePerSecond, 300]])),
+    new Upgrade("virtual-assistant", "Virtual Assistant", 500000, virtualAssistantIcon, new Map([[Stats.ScorePerClick, 100]]), undefined),
+    new Upgrade("denial-synergy", "Denial Synergy", 5000000, denialSynergyIcon, undefined, new Map([[Stats.ScorePerSecond, 400]])),
+    new Upgrade("bureaucracy-mastery", "Bureaucracy Mastery", 10000000, bureaucracyMasteryIcon, undefined, new Map([[Stats.ScorePerSecond, 500]])),
+    new Upgrade("laser-guided-mouse", "Laser-Guided Mouse", 5000000, laserGuidedMouseIcon, new Map([[Stats.ScorePerClick, 200]]), undefined),
+    new Upgrade("ultra-automation", "Ultra Automation", 20000000, ultraAutomationIcon, undefined, new Map([[Stats.ScorePerSecond, 1000]])),
+    new Upgrade("alien-touch", "Alien Touch", 50000000, alienTouchIcon, new Map([[Stats.ScorePerClick, 10000]]), undefined)
 ];

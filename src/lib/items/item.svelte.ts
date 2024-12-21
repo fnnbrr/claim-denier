@@ -1,9 +1,13 @@
 import { Inventory } from "$lib/inventory.svelte";
+import { ScoreAccumulator } from "$lib/score-accumulator.svelte";
 
-export abstract class Item
+export class Item
 {
-    abstract readonly key: string;
-    abstract readonly name: string;
+    readonly key: string;
+    readonly name: string;
+    readonly scorePerSecond: number;
+    readonly baseCost: number;
+    readonly iconPath: string;
 
     get quantity(): number
     {
@@ -12,8 +16,14 @@ export abstract class Item
 
     #quantity: number = $state(0);
 
-    abstract readonly baseCost: number;
-    abstract readonly iconPath: string;
+    constructor(key: string, name: string, scorePerSecond: number, baseCost: number, iconPath: string)
+    {
+        this.key = key;
+        this.name = name;
+        this.scorePerSecond = scorePerSecond;
+        this.baseCost = baseCost;
+        this.iconPath = iconPath;
+    }
 
     incrementQuantity(increment: number, modifyScore: boolean): void
     {
@@ -30,11 +40,22 @@ export abstract class Item
         }
 
         this.#quantity += increment;
+
+        ScoreAccumulator.instance.modifyScorePerSecond(this.scorePerSecond * increment);
     }
 
-    abstract getCost(): number;
+    getCost(): number
+    {
+        return this.baseCost * (Math.pow(1.15, this.quantity));
+    }
 
-    abstract getRefundAmount(): number;
+    getRefundAmount(): number
+    {
+        return 0.5 * this.getCost();
+    }
 
-    abstract getTooltipText(): string;
-}
+    getTooltipText(): string
+    {
+        return `Denies ${this.scorePerSecond} claims per second`;
+    }
+};

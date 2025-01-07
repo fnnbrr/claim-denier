@@ -2,7 +2,7 @@ import { allItems } from "./items/all-items";
 import { formatScore, FormatStyle } from "./format-score";
 import { allUpgrades } from "../upgrades/all-upgrades";
 import { StatManager, Stats } from "./stats/stat-manager";
-import { ScoreTextSpawner } from "./score-text-spawner";
+import { ScoreTextSpawner } from "./score-text-spawner.svelte";
 
 declare global
 {

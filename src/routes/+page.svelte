@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Inventory } from "$lib/inventory.svelte";
   import "$lib/save-manager.svelte";
+  import ScoreTexts from "$lib/score-texts.svelte";
   import "../app.css";
   import GameView from "../game-view.svelte";
   import Store from "../store.svelte";
@@ -22,6 +23,7 @@
   <GameView></GameView>
   <Store></Store>
 </div>
+<ScoreTexts></ScoreTexts>
 
 <style>
   .row {

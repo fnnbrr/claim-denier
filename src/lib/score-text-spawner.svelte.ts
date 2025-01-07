@@ -13,8 +13,12 @@ export class ScoreTextSpawner
         this.#instance = new ScoreTextSpawner();
     }
 
+    public scoreTexts: ScoreText[] = $state([]);
+
     #canSpawn: boolean = false;
     #queuedScoreDelta: number = 0;
+
+    #currentId: number = 0;
 
     constructor()
     {
@@ -43,6 +47,21 @@ export class ScoreTextSpawner
 
         console.log(this.#queuedScoreDelta);
 
+        this.scoreTexts.push({
+            id: this.#currentId,
+            scoreDelta: this.#queuedScoreDelta,
+            lifetimeNormalized: 0
+        });
+
+        this.#currentId += 1;
+
         this.#queuedScoreDelta = 0;
     }
+}
+
+export interface ScoreText
+{
+    id: number;
+    scoreDelta: number;
+    lifetimeNormalized: number;
 }

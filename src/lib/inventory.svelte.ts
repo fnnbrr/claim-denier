@@ -116,10 +116,10 @@ export class Inventory
 
     onClick(): number
     {
-        const scoreAdded: number = StatManager.instance.getStat(Stats.ScorePerClick).modify(1);
-        this.score += scoreAdded;
+        const scoreDelta: number = StatManager.instance.getStat(Stats.ScorePerClick).modify(1);
+        this.score += scoreDelta;
 
-        return scoreAdded;
+        return scoreDelta;
     }
 }
 

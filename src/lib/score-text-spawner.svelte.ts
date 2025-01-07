@@ -1,3 +1,5 @@
+import { ScoreText } from "./score-text.svelte";
+
 export class ScoreTextSpawner
 {
     static get instance()
@@ -19,8 +21,6 @@ export class ScoreTextSpawner
     #queuedScoreDelta: number = 0;
     #lastSpawnPosX: number = 0;
     #lastSpawnPosY: number = 0;
-
-    #currentId: number = 0;
 
     constructor()
     {
@@ -51,25 +51,22 @@ export class ScoreTextSpawner
 
         console.log(this.#queuedScoreDelta);
 
-        this.scoreTexts.push({
-            id: this.#currentId,
-            scoreDelta: this.#queuedScoreDelta,
-            lifetimeNormalized: 0,
-            spawnPosX: this.#lastSpawnPosX,
-            spawnPosY: this.#lastSpawnPosY,
-        });
-
-        this.#currentId += 1;
+        this.scoreTexts.push(new ScoreText(this.#queuedScoreDelta, this.#lastSpawnPosX, this.#lastSpawnPosY, this.DespawnScoreText.bind(this)));
 
         this.#queuedScoreDelta = 0;
     }
-}
 
-export interface ScoreText
-{
-    id: number;
-    scoreDelta: number;
-    lifetimeNormalized: number;
-    spawnPosX: number;
-    spawnPosY: number;
+    private DespawnScoreText(scoreText: ScoreText)
+    {
+        const removeIndex: number = this.scoreTexts.indexOf(scoreText);
+
+        if (removeIndex > -1)
+        {
+            this.scoreTexts.splice(removeIndex, 1);
+        }
+        else
+        {
+            console.error(`ScoreText not found: ${JSON.stringify(scoreText)}`);
+        }
+    }
 }

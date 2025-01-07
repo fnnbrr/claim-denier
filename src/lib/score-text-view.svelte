@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { ScoreText } from "./score-text-spawner.svelte";
+  import type { ScoreText } from "./score-text.svelte";
 
   interface Props {
     scoreText: ScoreText;

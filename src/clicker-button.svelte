@@ -11,7 +11,7 @@
   function onpointerdown(e: MouseEvent) {
     e.preventDefault();
 
-    const scoreAdded: number = Inventory.instance.onClick();
+    const scoreDelta: number = Inventory.instance.onClick();
     spring.target = spring.current + 0.25;
 
     setTimeout(() => {
@@ -21,7 +21,7 @@
     audio.currentTime = 0;
     audio.play();
 
-    ScoreTextSpawner.instance.QueueScoreText(scoreAdded, e.clientX, e.clientY);
+    ScoreTextSpawner.instance.QueueScoreText(scoreDelta, e.clientX, e.clientY);
   }
 
   function oncontextmenu(e: MouseEvent) {

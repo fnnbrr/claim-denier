@@ -3,6 +3,7 @@
   import { Spring } from "svelte/motion";
   import prohibitedIcon from "$lib/assets/images/fluent-emoji/prohibited_3d.png";
   import clickSfx from "$lib/assets/audio/error_005.ogg";
+  import { ScoreTextSpawner } from "$lib/score-text-spawner.svelte";
 
   const spring: Spring<number> = new Spring(1);
   let audio: HTMLAudioElement;
@@ -10,7 +11,7 @@
   function onpointerdown(e: MouseEvent) {
     e.preventDefault();
 
-    Inventory.instance.onClick();
+    const scoreAdded: number = Inventory.instance.onClick();
     spring.target = spring.current + 0.25;
 
     setTimeout(() => {
@@ -19,6 +20,8 @@
 
     audio.currentTime = 0;
     audio.play();
+
+    ScoreTextSpawner.instance.QueueScoreText(scoreAdded, e.clientX, e.clientY);
   }
 
   function oncontextmenu(e: MouseEvent) {

@@ -13,11 +13,10 @@
   #score-texts {
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 0;
+    height: 0;
     margin: 0;
     border: none;
     position: fixed;
-    z-index: -1; /* To be behind everything else for easy debugging */
   }
 </style>

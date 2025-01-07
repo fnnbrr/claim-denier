@@ -2,7 +2,6 @@ import { allItems } from "./items/all-items";
 import { formatScore, FormatStyle } from "./format-score";
 import { allUpgrades } from "../upgrades/all-upgrades";
 import { StatManager, Stats } from "./stats/stat-manager";
-import { ScoreTextSpawner } from "./score-text-spawner.svelte";
 
 declare global
 {
@@ -115,11 +114,12 @@ export class Inventory
     maxItemIndex = $state(-1);
     maxUpgradeIndex = $state(-1);
 
-    onClick()
+    onClick(): number
     {
-        const scoreDelta: number = StatManager.instance.getStat(Stats.ScorePerClick).modify(1);
-        this.score += scoreDelta;
-        ScoreTextSpawner.instance.QueueScoreText(scoreDelta);
+        const scoreAdded: number = StatManager.instance.getStat(Stats.ScorePerClick).modify(1);
+        this.score += scoreAdded;
+
+        return scoreAdded;
     }
 }
 

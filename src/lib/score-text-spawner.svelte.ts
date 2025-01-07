@@ -17,6 +17,8 @@ export class ScoreTextSpawner
 
     #canSpawn: boolean = false;
     #queuedScoreDelta: number = 0;
+    #lastSpawnPosX: number = 0;
+    #lastSpawnPosY: number = 0;
 
     #currentId: number = 0;
 
@@ -30,9 +32,11 @@ export class ScoreTextSpawner
         }, 62.5);
     }
 
-    public QueueScoreText(scoreDelta: number): void
+    public QueueScoreText(scoreDelta: number, spawnPosX: number, spawnPosY: number): void
     {
         this.#queuedScoreDelta += scoreDelta;
+        this.#lastSpawnPosX = spawnPosX;
+        this.#lastSpawnPosY = spawnPosY;
 
         if (this.#canSpawn)
         {
@@ -50,7 +54,9 @@ export class ScoreTextSpawner
         this.scoreTexts.push({
             id: this.#currentId,
             scoreDelta: this.#queuedScoreDelta,
-            lifetimeNormalized: 0
+            lifetimeNormalized: 0,
+            spawnPosX: this.#lastSpawnPosX,
+            spawnPosY: this.#lastSpawnPosY,
         });
 
         this.#currentId += 1;
@@ -64,4 +70,6 @@ export interface ScoreText
     id: number;
     scoreDelta: number;
     lifetimeNormalized: number;
+    spawnPosX: number;
+    spawnPosY: number;
 }

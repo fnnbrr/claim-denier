@@ -2,6 +2,7 @@ import { allItems } from "./items/all-items";
 import { formatScore, FormatStyle } from "./format-score";
 import { allUpgrades } from "../upgrades/all-upgrades";
 import { StatManager, Stats } from "./stats/stat-manager";
+import { ScoreTextSpawner } from "./score-text-spawner";
 
 declare global
 {
@@ -116,7 +117,9 @@ export class Inventory
 
     onClick()
     {
-        this.score += StatManager.instance.getStat(Stats.ScorePerClick).modify(1);
+        const scoreDelta: number = StatManager.instance.getStat(Stats.ScorePerClick).modify(1);
+        this.score += scoreDelta;
+        ScoreTextSpawner.instance.QueueScoreText(scoreDelta);
     }
 }
 

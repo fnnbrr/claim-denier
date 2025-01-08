@@ -4,9 +4,14 @@
   import prohibitedIcon from "$lib/assets/images/fluent-emoji/prohibited_3d.png";
   import clickSfx from "$lib/assets/audio/error_005.ogg";
   import { ScoreTextSpawner } from "$lib/score-text-spawner.svelte";
+  import { Preferences } from "$lib/preferences.svelte";
 
   const spring: Spring<number> = new Spring(1);
   let audio: HTMLAudioElement;
+
+  $effect(() => {
+    audio.muted = Preferences.instance.isMuted;
+  });
 
   function onpointerdown(e: MouseEvent) {
     e.preventDefault();

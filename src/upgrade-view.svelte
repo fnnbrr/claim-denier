@@ -2,6 +2,7 @@
   import { Inventory } from "$lib/inventory.svelte";
   import type { Upgrade } from "./upgrades/upgrade.svelte";
   import checkMarkIcon from "$lib/assets/images/checkmark-64.png";
+  import { formatScore, FormatStyle } from "$lib/format-score";
 
   interface Props {
     upgrade: Upgrade;
@@ -49,7 +50,11 @@
   <div class="tooltip-positioning">
     <div class="tooltip">
       <b>{upgrade.name}</b>
-      <p>{upgrade.isOwned ? "Owned" : "🚫" + upgrade.cost}</p>
+      <p>
+        {upgrade.isOwned
+          ? "Owned"
+          : "🚫" + formatScore(upgrade.cost, FormatStyle.short)}
+      </p>
       <p>{upgrade.getTooltipText()}</p>
     </div>
   </div>

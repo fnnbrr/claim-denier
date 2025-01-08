@@ -21,15 +21,15 @@
 
   let scoreText: string = $derived.by(() => {
     if (buySellQuantity > 0) {
-      return formatScore(buySellQuantity * item.getCost(), FormatStyle.short);
+      return formatScore(item.getCost(buySellQuantity), FormatStyle.short);
     } else {
-      return `+${formatScore(Math.abs(buySellQuantity) * item.getRefundAmount(), FormatStyle.short)}`;
+      return `+${formatScore(item.getRefundAmount(buySellQuantity), FormatStyle.short)}`;
     }
   });
 
   function isDisabled(): boolean {
     if (buySellQuantity > 0) {
-      return item.getCost() * buySellQuantity > Inventory.instance.score;
+      return item.getCost(buySellQuantity) > Inventory.instance.score;
     } else {
       return Math.abs(buySellQuantity) > item.quantity;
     }

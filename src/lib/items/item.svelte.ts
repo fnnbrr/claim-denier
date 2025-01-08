@@ -31,11 +31,11 @@ export class Item
         {
             if (increment > 0)
             {
-                Inventory.instance.score -= increment * this.getCost();
+                Inventory.instance.score -= this.getCost(increment);
             }
             else
             {
-                Inventory.instance.score -= increment * this.getRefundAmount();
+                Inventory.instance.score += this.getRefundAmount(increment);
             }
         }
 
@@ -44,14 +44,18 @@ export class Item
         ScoreAccumulator.instance.modifyScorePerSecond(this.scorePerSecond * increment);
     }
 
-    getCost(): number
+    getCost(buyQuantity: number): number
     {
-        return this.baseCost * (Math.pow(1.15, this.quantity));
+        const firstCost: number = this.baseCost * (Math.pow(1.15, this.quantity));
+        return sumGeometricSeries(firstCost, 1.15, buyQuantity);
     }
 
-    getRefundAmount(): number
+    getRefundAmount(sellQuantity: number): number
     {
-        return 0.5 * this.getCost();
+        sellQuantity = Math.abs(sellQuantity);
+
+        const firstCost: number = this.baseCost * (Math.pow(1.15, this.quantity - sellQuantity));
+        return 0.5 * sumGeometricSeries(firstCost, 1.15, sellQuantity);
     }
 
     getTooltipText(): string
@@ -59,3 +63,12 @@ export class Item
         return `Denies ${this.scorePerSecond} claims per second`;
     }
 };
+
+// https://www.cuemath.com/geometric-series-formula/
+function sumGeometricSeries(baseTerm: number, commonRatio: number, numTerms: number)
+{
+    const numerator: number = baseTerm * (Math.pow(commonRatio, numTerms) - 1);
+    const denominator: number = commonRatio - 1;
+
+    return numerator / denominator;
+}

@@ -35,6 +35,12 @@
 			"name": "preview client",
 			"request": "launch",
 			"url": "http://localhost:4173/"
+		},
+		{
+			"command": "npm run electron-dev",
+			"name": "electron dev",
+			"request": "launch",
+			"type": "node-terminal"
 		}
 	],
 	"compounds": [

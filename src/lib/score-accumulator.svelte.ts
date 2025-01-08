@@ -29,14 +29,16 @@ export class ScoreAccumulator
     #scorePerSecond: number = 0;
     #prevTimeStamp: DOMHighResTimeStamp;
 
+    scorePerSecondWithStats: number = $state(0);
+
     #update(timeStamp: DOMHighResTimeStamp)
     {
         const deltaTime: number = timeStamp - this.#prevTimeStamp;
         this.#prevTimeStamp = timeStamp;
 
-        const scorePerSecondWithStats: number = StatManager.instance.getStat(Stats.ScorePerSecond).modify(this.#scorePerSecond);
+        this.scorePerSecondWithStats = StatManager.instance.getStat(Stats.ScorePerSecond).modify(this.#scorePerSecond);
 
-        Inventory.instance.score += (deltaTime / 1000) * scorePerSecondWithStats;
+        Inventory.instance.score += (deltaTime / 1000) * this.scorePerSecondWithStats;
 
         requestAnimationFrame((nextTimeStamp) => this.#update(nextTimeStamp));
     }

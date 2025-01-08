@@ -2,7 +2,6 @@ export class ScoreText
 {
     id: number;
     scoreDelta: number;
-    lifetimeNormalized: number = 0;
     spawnPosX: number;
     spawnPosY: number;
 
@@ -17,9 +16,11 @@ export class ScoreText
         this.id = ScoreText.currentId;
         ScoreText.currentId += 1;
 
+        const duration: number = 500 + (Math.random() * 400);
+
         setTimeout(() =>
         {
             removeFunction(this);
-        }, 500);
+        }, duration);
     }
 }

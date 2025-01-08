@@ -49,8 +49,6 @@ export class ScoreTextSpawner
     {
         if (this.#queuedScoreDelta === 0) return;
 
-        console.log(this.#queuedScoreDelta);
-
         this.scoreTexts.push(new ScoreText(this.#queuedScoreDelta, this.#lastSpawnPosX, this.#lastSpawnPosY, this.DespawnScoreText.bind(this)));
 
         this.#queuedScoreDelta = 0;

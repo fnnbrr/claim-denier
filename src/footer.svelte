@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Preferences } from "$lib/preferences.svelte";
-  $inspect(Preferences.instance.isMuted);
 </script>
 
 <div class="footer">
@@ -29,6 +28,7 @@
     align-content: center;
     padding-left: 12px;
     padding-right: 12px;
+    padding-top: 4px;
   }
   p {
     margin: 0;

@@ -1,13 +1,20 @@
-<script>
+<script lang="ts">
   import UpgradeView from "./upgrade-view.svelte";
   import { allUpgrades } from "./upgrades/all-upgrades";
+
+  let scrollElement: HTMLElement;
+  let parentScrollTop: number = 0;
+
+  function onscroll() {
+    parentScrollTop = scrollElement.scrollTop;
+  }
 </script>
 
 <div class="upgrades">
   <h3>Upgrades</h3>
-  <div class="upgrade-list">
+  <div class="upgrade-list" {onscroll} bind:this={scrollElement}>
     {#each allUpgrades as upgrade, index (upgrade.key)}
-      <UpgradeView {upgrade} {index}></UpgradeView>
+      <UpgradeView {upgrade} {index} {parentScrollTop}></UpgradeView>
     {/each}
   </div>
 </div>

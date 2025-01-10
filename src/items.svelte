@@ -3,6 +3,13 @@
   import ItemView from "./item-view.svelte";
 
   let buySellQuantity: number = 1;
+
+  let scrollElement: HTMLElement;
+  let parentScrollTop: number = 0;
+
+  function onscroll() {
+    parentScrollTop = scrollElement.scrollTop;
+  }
 </script>
 
 <div class="items">
@@ -15,9 +22,9 @@
     <option value={-10}>Sell 10</option>
     <option value={-100}>Sell 100</option>
   </select>
-  <div class="item-list">
+  <div class="item-list" {onscroll} bind:this={scrollElement}>
     {#each allItems as item, index (item.key)}
-      <ItemView {item} {index} {buySellQuantity}></ItemView>
+      <ItemView {item} {index} {buySellQuantity} {parentScrollTop}></ItemView>
     {/each}
   </div>
 </div>
@@ -35,6 +42,7 @@
   .item-list {
     width: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -7,9 +7,12 @@
   interface Props {
     upgrade: Upgrade;
     index: number;
+    parentScrollTop: number;
   }
 
-  let { upgrade, index }: Props = $props();
+  let { upgrade, index, parentScrollTop }: Props = $props();
+
+  let tooltipPositioningElement: HTMLElement;
 
   function onclick() {
     upgrade.setIsOwned(true, true);
@@ -24,9 +27,14 @@
   }
 
   function isHidden(): boolean {
+    return false;
     // Only show upgrades the player has bought + the next two
     return index > Inventory.instance.maxUpgradeIndex + 2;
   }
+
+  $effect(() => {
+    tooltipPositioningElement.style.top = `${-parentScrollTop}px`;
+  });
 </script>
 
 <button
@@ -47,7 +55,7 @@
   {#if upgrade.isOwned}
     <img class="own-icon" src={checkMarkIcon} alt="own icon" />
   {/if}
-  <div class="tooltip-positioning">
+  <div class="tooltip-positioning" bind:this={tooltipPositioningElement}>
     <div class="tooltip">
       <b>{upgrade.name}</b>
       <p>
@@ -86,15 +94,13 @@
 
   .tooltip-positioning {
     position: absolute;
-    left: -8px;
-    top: 50%;
   }
 
   .tooltip {
     display: none;
     position: fixed;
     z-index: 2;
-    transform: translate(-100%, -50%);
+    transform: translate(calc(-100% - 16px), -10px);
     width: max-content;
     padding-top: 8px;
     padding-bottom: 8px;

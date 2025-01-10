@@ -7,9 +7,12 @@
     item: Item;
     index: number;
     buySellQuantity: number;
+    parentScrollTop: number;
   }
 
-  let { item, index, buySellQuantity }: Props = $props();
+  let { item, index, buySellQuantity, parentScrollTop }: Props = $props();
+
+  let tooltipPositioningElement: HTMLElement;
 
   function onclick() {
     item.incrementQuantity(buySellQuantity, true);
@@ -37,8 +40,13 @@
 
   function isHidden(): boolean {
     // Only show items the player has bought + the next two
+    return false;
     return index > Inventory.instance.maxItemIndex + 2;
   }
+
+  $effect(() => {
+    tooltipPositioningElement.style.top = `${-parentScrollTop}px`;
+  });
 </script>
 
 <button
@@ -58,7 +66,7 @@
     <p>🚫{scoreText}</p>
   </div>
   <b class="right">x{item.quantity}</b>
-  <div class="tooltip-positioning">
+  <div class="tooltip-positioning" bind:this={tooltipPositioningElement}>
     <div class="tooltip">
       <p>{item.getTooltipText()}</p>
     </div>
@@ -103,15 +111,13 @@
 
   .tooltip-positioning {
     position: absolute;
-    left: -8px;
-    align-self: center;
   }
 
   .tooltip {
     display: none;
     position: fixed;
     z-index: 1;
-    transform: translate(-100%, -50%);
+    transform: translate(calc(-100% - 16px), 10px);
     width: max-content;
     padding-left: 16px;
     padding-right: 16px;

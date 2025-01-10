@@ -9,7 +9,7 @@ const createWindow = () =>
         height: 600,
         autoHideMenuBar: true,
         show: false,
-        icon: "./src/lib/assets/images/fluent-emoji/prohibited_3d.png"
+        icon: "src/lib/assets/images/prohibited_3d.ico"
     });
 
     // and load the index.html of the app.

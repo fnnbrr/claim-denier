@@ -5,6 +5,7 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
+    icon: 'src/lib/assets/images/prohibited_3d.ico'
   },
   rebuildConfig: {},
   makers: [

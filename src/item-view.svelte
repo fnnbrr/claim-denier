@@ -40,7 +40,6 @@
 
   function isHidden(): boolean {
     // Only show items the player has bought + the next two
-    return false;
     return index > Inventory.instance.maxItemIndex + 2;
   }
 

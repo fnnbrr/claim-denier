@@ -27,7 +27,6 @@
   }
 
   function isHidden(): boolean {
-    return false;
     // Only show upgrades the player has bought + the next two
     return index > Inventory.instance.maxUpgradeIndex + 2;
   }

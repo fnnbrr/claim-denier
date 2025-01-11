@@ -28,7 +28,9 @@
     align-content: center;
     padding-left: 12px;
     padding-right: 12px;
-    padding-top: 4px;
+  }
+  .footer > * {
+    align-self: center;
   }
   p {
     margin: 0;

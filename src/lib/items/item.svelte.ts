@@ -57,11 +57,6 @@ export class Item
         const firstCost: number = this.baseCost * (Math.pow(1.15, this.quantity - sellQuantity));
         return 0.5 * sumGeometricSeries(firstCost, 1.15, sellQuantity);
     }
-
-    getTooltipText(): string
-    {
-        return `Denies ${this.scorePerSecond} claims per second`;
-    }
 };
 
 // https://www.cuemath.com/geometric-series-formula/

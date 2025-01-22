@@ -63,11 +63,16 @@
   <div class="center">
     <b>{item.name}</b>
     <p>🚫{scoreText}</p>
+    <p class="inline-score-per-second">
+      {`+${formatScore(item.scorePerSecond, FormatStyle.short)} per second`}
+    </p>
   </div>
   <b class="right">x{item.quantity}</b>
   <div class="tooltip-positioning" bind:this={tooltipPositioningElement}>
     <div class="tooltip">
-      <p>{item.getTooltipText()}</p>
+      <p>
+        {`Denies ${formatScore(item.scorePerSecond, FormatStyle.short)} claims per second`}
+      </p>
     </div>
   </div>
 </button>
@@ -127,7 +132,14 @@
     border-radius: 6px;
   }
 
-  .item-view:hover .tooltip {
-    display: initial;
+  /* For desktop, show item stats in tooltip instead of in button */
+  @media (min-width: 700px) {
+    .inline-score-per-second {
+      display: none;
+    }
+
+    .item-view:hover .tooltip {
+      display: initial;
+    }
   }
 </style>

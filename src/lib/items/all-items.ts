@@ -23,8 +23,8 @@ import insuranceNukeIcon from "$lib/assets/images/fluent-emoji/radioactive_3d.pn
 
 export const allItems: Item[] =
     [
-        new Item("intern", "Intern", 0.1, 10, internIcon),
-        new Item("rubber-stamp", "Rubber Stamp", 1, 100, rubberStampIcon),
+        new Item("intern", "Intern", 1, 10, internIcon),
+        new Item("rubber-stamp", "Rubber Stamp", 5, 100, rubberStampIcon),
         new Item("paper-shredder", "Paper Shredder", 8, 1_100, paperShredderIcon),
         new Item("denial-hotline", "Denial Hotline", 47, 12_000, denialHotlineIcon),
         new Item("fine-print-magnifier", "Fine Print Magnifier", 260, 130_000, finePrintMagnifierIcon),

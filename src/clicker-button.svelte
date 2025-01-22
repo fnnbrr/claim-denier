@@ -69,8 +69,6 @@
 <audio src={clickSfx} volume={0.5} bind:this={audio}></audio>
 
 <style>
-  /* TODO map isn't resized, clicking weird */
-
   .fill-parent {
     width: 100%;
     height: 100%;

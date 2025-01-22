@@ -34,6 +34,7 @@
     align-items: center;
     height: calc(100svh - 34px);
     width: 100%;
+    overflow: hidden;
   }
 
   /* For desktop, show button and store in a row */

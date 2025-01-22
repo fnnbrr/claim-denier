@@ -9,6 +9,15 @@
   const spring: Spring<number> = new Spring(1);
   let audio: HTMLAudioElement;
 
+  let imgWidth: number = $state(0);
+  let imgHeight: number = $state(0);
+
+  let clickAreaCenterX: number = $derived(imgWidth / 2);
+  let clickAreaCenterY: number = $derived(imgHeight / 2);
+  let clickAreaRadius: number = $derived(
+    0.4375 * Math.max(imgWidth, imgHeight)
+  );
+
   $effect(() => {
     audio.muted = Preferences.instance.isMuted;
   });
@@ -40,6 +49,8 @@
     alt="prohibited icon"
     usemap="#prohibitedIconMap"
     style="scale: {spring.current}"
+    bind:clientWidth={imgWidth}
+    bind:clientHeight={imgHeight}
   />
   <map
     name="prohibitedIconMap"
@@ -48,7 +59,11 @@
     role="button"
     tabindex="0"
   >
-    <area shape="circle" coords="127,127,112" alt="circlular click area" />
+    <area
+      shape="circle"
+      coords="{clickAreaCenterX},{clickAreaCenterY},{clickAreaRadius}"
+      alt="circlular click area"
+    />
   </map>
 </div>
 <audio src={clickSfx} volume={0.5} bind:this={audio}></audio>

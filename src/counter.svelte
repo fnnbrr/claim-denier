@@ -13,6 +13,7 @@
 </p>
 
 <style>
+  h3,
   p {
     margin: 0;
   }

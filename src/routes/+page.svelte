@@ -20,26 +20,28 @@
   <title>{title}</title>
 </svelte:head>
 
-<div class="column">
-  <div class="row">
-    <GameView></GameView>
-    <Store></Store>
-  </div>
-  <Footer></Footer>
+<div class="column-row">
+  <GameView></GameView>
+  <Store></Store>
 </div>
+<Footer></Footer>
 <ScoreTexts></ScoreTexts>
 
 <style>
-  .column {
+  .column-row {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    align-items: center;
+    height: calc(100svh - 34px);
     width: 100%;
+    overflow: hidden;
   }
-  .row {
-    display: flex;
-    flex-direction: row;
-    height: calc(100% - 32px);
-    width: 100%;
+
+  /* For desktop, show button and store in a row */
+  @media (min-width: 700px) {
+    .column-row {
+      flex-direction: row;
+      align-items: start;
+    }
   }
 </style>

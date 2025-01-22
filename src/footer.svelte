@@ -20,6 +20,10 @@
 
 <style>
   .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     min-height: 32px;
     height: 32px;
     display: flex;
@@ -28,6 +32,9 @@
     align-content: center;
     padding-left: 12px;
     padding-right: 12px;
+    background-color: whitesmoke;
+    border-top: 2px solid grey;
+    z-index: 3;
   }
   .footer > * {
     align-self: center;

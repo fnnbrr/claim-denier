@@ -12,6 +12,15 @@
   .store {
     display: flex;
     flex-direction: row;
-    width: max(200px, 33%);
+    width: calc(100% - 16px);
+    height: 50%;
+    gap: 4px;
+  }
+
+  @media (min-width: 700px) {
+    .store {
+      width: min(500px, 50%);
+      height: 100%;
+    }
   }
 </style>

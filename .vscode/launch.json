@@ -41,6 +41,12 @@
 			"name": "electron dev",
 			"request": "launch",
 			"type": "node-terminal"
+		},
+		{
+			"command": "npm run make",
+			"name": "electron build",
+			"request": "launch",
+			"type": "node-terminal",
 		}
 	],
 	"compounds": [

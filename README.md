@@ -1,38 +1,22 @@
-# sv
+# Health Insurance Claim Denier
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+An incremental game about denying health insurance claims. 🚫
 
-## Creating a project
+This is a satirical take on [Cookie Clicker](https://orteil.dashnet.org/cookieclicker/) that plays off the absurdities of [semi-automated denials in the healthcare insurance industry](https://en.wikipedia.org/wiki/Cigna#Automatically_rejecting_claims_with_no_review).
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Technical Details
 
-```bash
-# create a new project in the current directory
-npx sv create
+Made with:
+- [Svelte](https://svelte.dev/)
+- [Electron](https://www.electronjs.org/)
+    - for the [Steam version of the game](https://store.steampowered.com/app/3451060/Health_Insurance_Claim_Denier/)
+- [Playwright](https://playwright.dev/)
+    - for e2e testing to simulate players using autoclickers
 
-# create a new project in my-app
-npx sv create my-app
-```
+See [launch.json](.vscode/launch.json) for a list of run & build commands.
 
-## Developing
+## Credits
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- Item concepts and stats inspired by [Cookie Clicker](https://orteil.dashnet.org/cookieclicker/)/[Cookie Clicker Wiki](https://cookieclicker.fandom.com/wiki/Cookie_Clicker_Wiki)
+- Icons from [Fluent Emoji](https://github.com/microsoft/fluentui-emoji)
+- Click sound effect from [Kenney.nl](https://kenney.nl/)
